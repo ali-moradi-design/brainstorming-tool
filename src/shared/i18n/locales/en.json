@@ -3,7 +3,9 @@
     "title": "Brainstorm",
     "tagline": "Pour your ideas onto a mind map. Everything stays on your device."
   },
-  "nav": { "back": "All boards" },
+  "nav": {
+    "back": "All boards"
+  },
   "boards": {
     "title": "Your boards",
     "empty": "No boards yet. Name your first one above.",
@@ -13,7 +15,10 @@
     "deleteConfirm": "Delete this board and all its ideas?",
     "updated": "Updated {{date}}"
   },
-  "board": { "titleLabel": "Board title", "notFound": "This board does not exist." },
+  "board": {
+    "titleLabel": "Board title",
+    "notFound": "This board does not exist."
+  },
   "idea": {
     "new": "New idea",
     "addChild": "Add child (Tab)",
@@ -23,12 +28,37 @@
     "color": "Color {{n}}",
     "hint": "Double-click or F2 to edit · Tab adds a child · Enter adds a sibling"
   },
-  "theme": { "toLight": "Switch to light theme", "toDark": "Switch to dark theme" },
-  "language": { "label": "Language" },
+  "theme": {
+    "toLight": "Switch to light theme",
+    "toDark": "Switch to dark theme"
+  },
+  "language": {
+    "label": "Language"
+  },
   "backup": {
     "export": "Export",
     "import": "Import",
     "importDone": "Imported {{count}} ideas",
     "importError": "This is not a valid backup file"
+  },
+  "sidebar": {
+    "title": "Navigation",
+    "projects": "Projects",
+    "outline": "Outline",
+    "collapse": "Collapse panel",
+    "expand": "Expand panel"
+  },
+  "details": {
+    "title": "Idea details",
+    "close": "Close",
+    "text": "Title",
+    "color": "Color",
+    "description": "Description",
+    "descriptionPlaceholder": "What is this idea about?",
+    "notes": "Notes",
+    "notePlaceholder": "Write a note… (Ctrl+Enter to add)",
+    "addNote": "Add note",
+    "noNotes": "No notes yet.",
+    "deleteNote": "Delete note"
   }
 }

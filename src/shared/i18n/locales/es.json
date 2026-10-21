@@ -3,7 +3,9 @@
     "title": "Lluvia de ideas",
     "tagline": "Vuelca tus ideas en un mapa mental. Todo se queda en tu dispositivo."
   },
-  "nav": { "back": "Todos los tableros" },
+  "nav": {
+    "back": "Todos los tableros"
+  },
   "boards": {
     "title": "Tus tableros",
     "empty": "Aún no hay tableros. Pon nombre al primero arriba.",
@@ -13,7 +15,10 @@
     "deleteConfirm": "¿Eliminar este tablero y todas sus ideas?",
     "updated": "Actualizado el {{date}}"
   },
-  "board": { "titleLabel": "Título del tablero", "notFound": "Este tablero no existe." },
+  "board": {
+    "titleLabel": "Título del tablero",
+    "notFound": "Este tablero no existe."
+  },
   "idea": {
     "new": "Nueva idea",
     "addChild": "Añadir hija (Tab)",
@@ -23,12 +28,37 @@
     "color": "Color {{n}}",
     "hint": "Doble clic o F2 para editar · Tab añade una hija · Enter añade una hermana"
   },
-  "theme": { "toLight": "Cambiar al tema claro", "toDark": "Cambiar al tema oscuro" },
-  "language": { "label": "Idioma" },
+  "theme": {
+    "toLight": "Cambiar al tema claro",
+    "toDark": "Cambiar al tema oscuro"
+  },
+  "language": {
+    "label": "Idioma"
+  },
   "backup": {
     "export": "Exportar",
     "import": "Importar",
     "importDone": "Se importaron {{count}} ideas",
     "importError": "Este archivo de copia de seguridad no es válido"
+  },
+  "sidebar": {
+    "title": "Navegación",
+    "projects": "Proyectos",
+    "outline": "Esquema",
+    "collapse": "Contraer panel",
+    "expand": "Expandir panel"
+  },
+  "details": {
+    "title": "Detalles de la idea",
+    "close": "Cerrar",
+    "text": "Título",
+    "color": "Color",
+    "description": "Descripción",
+    "descriptionPlaceholder": "¿De qué trata esta idea?",
+    "notes": "Notas",
+    "notePlaceholder": "Escribe una nota… (Ctrl+Enter para añadir)",
+    "addNote": "Añadir nota",
+    "noNotes": "Aún no hay notas.",
+    "deleteNote": "Eliminar nota"
   }
 }

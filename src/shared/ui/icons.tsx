@@ -32,6 +32,7 @@ export const DownloadIcon = icon('M12 4v11M7 11l5 5 5-5M5 20h14');
 export const UploadIcon = icon('M12 16V5M7 9l5-5 5 5M5 20h14');
 export const LayoutIcon = icon('M4 5h6v5H4zM14 3h6v5h-6zM14 14h6v5h-6zM10 8h2v9h2');
 export const BranchIcon = icon('M6 4v10a4 4 0 0 0 4 4h8M14 14l4 4-4 4');
+export const SidebarIcon = icon('M4 5h16v14H4zM9 5v14');
 export const ArrowIcon = icon('M19 12H5M11 6l-6 6 6 6');
 export const LogoIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg {...base} {...props} strokeWidth={1.8}>

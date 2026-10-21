@@ -1,7 +1,8 @@
 import { lazy, Suspense } from 'react';
 import { BoardsPage } from '@/pages/boards';
 import { matchBoardId, useHashPath } from '@/shared/lib';
-import { AppHeader } from '@/widgets/app-header';
+import { AppSidebar, SidebarToggle } from '@/widgets/app-sidebar';
+import { TopControls } from '@/widgets/top-controls';
 
 // The canvas pulls in @xyflow/react, so load it only when a board is opened.
 const BoardPage = lazy(() => import('@/pages/board').then((m) => ({ default: m.BoardPage })));
@@ -10,17 +11,21 @@ export function App() {
   const boardId = matchBoardId(useHashPath());
 
   return (
-    <>
-      <AppHeader />
-      <main>
+    <div className="relative flex h-dvh overflow-hidden">
+      <AppSidebar boardId={boardId} />
+      <main className="relative min-w-0 flex-1 overflow-y-auto">
+        <SidebarToggle />
+        <TopControls />
         {boardId ? (
           <Suspense fallback={null}>
             <BoardPage boardId={boardId} />
           </Suspense>
         ) : (
-          <BoardsPage />
+          <div className="pt-12">
+            <BoardsPage />
+          </div>
         )}
       </main>
-    </>
+    </div>
   );
 }

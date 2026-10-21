@@ -20,3 +20,11 @@
     color: var(--accent-fg);
   }
 }
+
+/* The canvas paints its own background (see BoardCanvas), so React Flow stays transparent. */
+.react-flow,
+.react-flow.dark,
+.react-flow.light {
+  --xy-background-color: transparent;
+  --xy-background-color-default: transparent;
+}

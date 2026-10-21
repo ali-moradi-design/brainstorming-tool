@@ -12,6 +12,7 @@ export const createBoard = async (title: string): Promise<string> => {
       boardId,
       parentId: null,
       text: title,
+      description: '',
       x: 0,
       y: 0,
       color: 3,

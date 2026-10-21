@@ -5,6 +5,8 @@ export type IdeaNodeData = {
   text: string;
   color: number;
   isRoot: boolean;
+  /** True when the idea has a description or notes. */
+  hasDetails: boolean;
   editing: boolean;
   onCommit: (text: string) => void;
   onEditStart: () => void;
@@ -24,14 +26,27 @@ export function IdeaNode({ data, selected }: NodeProps<IdeaFlowNode>) {
       style={{
         background: `var(--idea-${c}-bg)`,
         color: `var(--idea-${c}-fg)`,
-        borderColor: selected ? 'var(--accent-strong)' : `var(--idea-${c}-border, transparent)`,
-        boxShadow: selected ? '0 0 0 3px var(--accent)' : undefined,
+        borderColor: selected ? 'var(--accent)' : `var(--idea-${c}-border, transparent)`,
+        boxShadow: selected
+          ? '0 0 0 4px color-mix(in srgb, var(--accent) 40%, transparent)'
+          : undefined,
       }}
-      className={`min-w-32 max-w-56 rounded-xl border-2 px-4 py-2 text-center text-sm shadow-sm ${data.isRoot ? 'text-base font-semibold' : ''}`}
+      className={`relative min-w-24 max-w-56 rounded-full border-2 text-center font-semibold shadow-sm ${data.isRoot ? 'px-9 py-4 text-xl' : 'px-5 py-2 text-sm'}`}
     >
-      <Handle type="target" position={Position.Left} className="!size-2 !border-0 !bg-accent" />
+      {/* Edges are floating (see IdeaEdge); these handles only anchor React Flow. */}
+      <Handle type="target" position={Position.Top} className="!pointer-events-none !opacity-0" />
       {data.editing ? <Editor data={data} /> : <span className="break-words">{data.text}</span>}
-      <Handle type="source" position={Position.Right} className="!size-2 !border-0 !bg-accent" />
+      <Handle
+        type="source"
+        position={Position.Bottom}
+        className="!pointer-events-none !opacity-0"
+      />
+      {data.hasDetails && !data.editing && (
+        <span
+          aria-hidden
+          className="absolute -end-1 -top-1 size-3 rounded-full border-2 border-bg bg-accent"
+        />
+      )}
     </div>
   );
 }

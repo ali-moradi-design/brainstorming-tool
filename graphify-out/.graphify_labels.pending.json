@@ -1,10 +1,10 @@
 {
   "0": "package.json",
   "1": "idea/index.ts",
-  "2": "BoardsPage.tsx",
+  "2": "AppSidebar.tsx",
   "3": "devDependencies",
   "4": "react-i18next",
-  "5": "icons.tsx",
+  "5": "BackupMenu.tsx",
   "6": "actions.test.ts",
   "7": "compilerOptions",
   "8": "store.ts",
@@ -14,5 +14,13 @@
   "12": "jest.polyfills.ts",
   "13": ".prettierrc.json",
   "14": "Brainstorm",
-  "15": "CLAUDE.md"
+  "15": "CLAUDE.md",
+  "16": "IdeaDetailsPanel.tsx",
+  "17": "eslint.config.js",
+  "18": "BoardPage.tsx",
+  "19": "vite.config.ts",
+  "20": "@playwright/test",
+  "21": "jest.config.ts",
+  "22": "jest.setup.ts",
+  "23": "pnpm"
 }

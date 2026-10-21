@@ -24,3 +24,6 @@ holds theme (`bt:theme`) and language (`bt:lang`).
 - i18n: `en`, `es`, `fa` in `src/shared/i18n/locales`. `fa` is RTL: use logical Tailwind classes (`ms-`, `me-`, `text-start`).
   A Jest test fails if the locale files do not have identical keys.
 - Checks: `pnpm lint`, `pnpm typecheck`, `pnpm test` (Jest), `pnpm e2e` (Playwright; set `CHROMIUM_PATH` to use a custom browser).
+- UI: radial mind map (`@xyflow/react`, floating `IdeaEdge`), collapsible sidebar (projects + outline), details panel per idea
+  (description on the idea, many notes in the `notes` table). Selection is shared through `useSelection` (entities/idea).
+- Dexie schema is versioned in `src/shared/api/db.ts`: add a new `db.version(n)` for every change. Old backups must still import (Zod defaults).

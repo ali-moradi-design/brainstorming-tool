@@ -1,0 +1,1 @@
+export { IdeaDetailsPanel } from './IdeaDetailsPanel';

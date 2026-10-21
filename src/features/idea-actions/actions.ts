@@ -4,7 +4,7 @@ import {
   listIdeas,
   moveIdeas,
   removeIdeaTree,
-  tidyLayout,
+  radialLayout,
 } from '@/entities/idea';
 import { touchBoard } from '@/entities/board';
 
@@ -47,6 +47,6 @@ export const deleteIdea = async (boardId: string, ideaId: string): Promise<void>
 };
 
 export const tidyBoard = async (boardId: string): Promise<void> => {
-  await moveIdeas(tidyLayout(await listIdeas(boardId)));
+  await moveIdeas(radialLayout(await listIdeas(boardId)));
   await touchBoard(boardId);
 };

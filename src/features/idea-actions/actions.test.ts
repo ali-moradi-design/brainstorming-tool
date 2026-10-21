@@ -50,6 +50,7 @@ describe('idea actions', () => {
     await tidyBoard(boardId);
     const ideas = await listIdeas(boardId);
     expect(new Set(ideas.map((i) => `${i.x},${i.y}`)).size).toBe(3);
+    expect(ideas.find((i) => i.id === root.id)).toMatchObject({ x: 0, y: 0 });
 
     await deleteBoard(boardId);
     expect(await db.ideas.count()).toBe(0);

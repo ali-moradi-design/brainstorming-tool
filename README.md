@@ -3,12 +3,14 @@
 A local-first mind-map brainstorming app. Your boards never leave your browser:
 they are stored in IndexedDB, with JSON export/import for backups.
 
-![Dark theme](docs/screenshots/board-dark.png)
-![Light theme, Persian (RTL)](docs/screenshots/board-light-fa.png)
+![Dark theme](docs/screenshots/app-dark.png)
+![Light theme, Persian (RTL)](docs/screenshots/app-light-fa.png)
 
 ## Features
 
-- Multiple boards, each a mind map: add children (`Tab`) and siblings (`Enter`), edit (`F2` / double-click), delete (`Del`), recolor, drag, tidy layout
+- Multiple projects in a collapsible side panel (project list + outline of the open map)
+- Radial mind map: add children (`Tab`) and siblings (`Enter`), edit (`F2` / double-click), delete (`Del`), recolor, drag, tidy layout
+- Click an idea to open its details: a description plus any number of separate notes
 - English, Spanish and Persian (with RTL), light and dark themes
 - Works offline once loaded; JSON backup and restore
 

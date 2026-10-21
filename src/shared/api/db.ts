@@ -13,6 +13,8 @@ export interface IdeaRecord {
   /** `null` marks the root idea of a board. */
   parentId: string | null;
   text: string;
+  /** Short description shown in the details panel. */
+  description: string;
   x: number;
   y: number;
   /** Index into the idea color palette (see `--idea-N-*` tokens). */
@@ -20,9 +22,19 @@ export interface IdeaRecord {
   createdAt: number;
 }
 
+/** A free-form note attached to an idea (an idea can have many). */
+export interface NoteRecord {
+  id: string;
+  boardId: string;
+  ideaId: string;
+  text: string;
+  createdAt: number;
+}
+
 type BrainstormDB = Dexie & {
   boards: EntityTable<BoardRecord, 'id'>;
   ideas: EntityTable<IdeaRecord, 'id'>;
+  notes: EntityTable<NoteRecord, 'id'>;
 };
 
 export const db = new Dexie('brainstorming-tool') as BrainstormDB;
@@ -32,3 +44,14 @@ db.version(1).stores({
   boards: 'id, updatedAt',
   ideas: 'id, boardId, parentId',
 });
+
+db.version(2)
+  .stores({ notes: 'id, boardId, ideaId' })
+  .upgrade((tx) =>
+    tx
+      .table('ideas')
+      .toCollection()
+      .modify((idea) => {
+        idea.description = '';
+      }),
+  );
