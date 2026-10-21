@@ -4,13 +4,15 @@ import { buildOutline, useIdeas, useSelection } from '@/entities/idea';
 import { CreateBoardForm } from '@/features/board-create';
 import { DeleteBoardButton } from '@/features/board-delete';
 import { boardPath, navigate } from '@/shared/lib';
-import { Button, LogoIcon, SidebarIcon } from '@/shared/ui';
+import { Button, Logo, SidebarIcon } from '@/shared/ui';
 import { useSidebar } from './store';
 
-/** Always-visible button that collapses or expands the sidebar. */
-export function SidebarToggle() {
+/** Collapse/expand button. `inline` renders it in the sidebar header; otherwise it floats while collapsed. */
+export function SidebarToggle({ inline = false }: { inline?: boolean }) {
   const { t } = useTranslation();
   const { open, toggle } = useSidebar();
+  // One toggle at a time: inside the sidebar while open, floating while collapsed.
+  if (inline !== open) return null;
   const label = open ? t('sidebar.collapse') : t('sidebar.expand');
   return (
     <Button
@@ -19,7 +21,7 @@ export function SidebarToggle() {
       title={label}
       aria-expanded={open}
       data-testid="sidebar-toggle"
-      className="absolute start-3 top-3 z-30 w-10 bg-surface/90 px-0 shadow-lg backdrop-blur"
+      className={`w-10 px-0 ${inline ? '' : 'absolute start-3 top-3 z-30 bg-surface/90 shadow-lg backdrop-blur'}`}
     >
       <SidebarIcon className="rtl:-scale-x-100" />
     </Button>
@@ -38,14 +40,17 @@ export function AppSidebar({ boardId }: { boardId: string | null }) {
       data-open={open}
       className={`relative z-40 flex shrink-0 flex-col overflow-hidden border-border bg-surface transition-[width] duration-200 max-md:absolute max-md:inset-y-0 max-md:start-0 ${open ? 'w-72 border-e' : 'w-0'}`}
     >
-      <div className="flex w-72 min-h-0 flex-1 flex-col gap-4 p-4 pt-16">
-        <a
-          href="#/"
-          className="flex items-center gap-2 text-lg font-extrabold text-text no-underline"
-        >
-          <LogoIcon className="text-accent" width={24} height={24} />
-          {t('app.title')}
-        </a>
+      <div className="flex w-72 min-h-0 flex-1 flex-col gap-4 p-4">
+        <div className="flex items-center justify-between gap-2">
+          <a
+            href="#/"
+            className="flex items-center gap-2.5 text-xl font-extrabold tracking-tight text-text no-underline"
+          >
+            <Logo size={34} />
+            {t('app.title')}
+          </a>
+          <SidebarToggle inline />
+        </div>
         <CreateBoardForm compact onCreated={(id) => navigate(boardPath(id))} />
         <Projects boardId={boardId} />
         {boardId && <Outline boardId={boardId} />}

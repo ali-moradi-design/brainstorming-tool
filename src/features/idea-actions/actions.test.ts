@@ -2,7 +2,8 @@ import { db } from '@/shared/api';
 import { listIdeas } from '@/entities/idea';
 import { createBoard } from '@/features/board-create';
 import { deleteBoard } from '@/features/board-delete';
-import { addChild, addSibling, deleteIdea, tidyBoard } from './actions';
+import { addLink } from '@/entities/link';
+import { addChild, addSibling, deleteIdea, linkIdeas, tidyBoard, toggleCollapsed } from './actions';
 
 beforeEach(async () => {
   await db.boards.clear();
@@ -55,5 +56,31 @@ describe('idea actions', () => {
     await deleteBoard(boardId);
     expect(await db.ideas.count()).toBe(0);
     expect(await db.boards.count()).toBe(0);
+  });
+});
+
+describe('links and collapsing', () => {
+  it('links two ideas, and deleting an idea removes its links', async () => {
+    const boardId = await createBoard('Root');
+    const [root] = await listIdeas(boardId);
+    const a = (await addChild(boardId, root.id, 'a'))!;
+    const b = (await addChild(boardId, root.id, 'b'))!;
+    expect(await linkIdeas(boardId, a, b)).toBe(true);
+    expect(await linkIdeas(boardId, b, a)).toBe(false);
+    expect(await db.links.count()).toBe(1);
+
+    await deleteIdea(boardId, a);
+    expect(await db.links.count()).toBe(0);
+    expect(await addLink(boardId, root.id, b)).toBe(true);
+  });
+
+  it('collapses an idea and expands it again when a child is added', async () => {
+    const boardId = await createBoard('Root');
+    const [root] = await listIdeas(boardId);
+    const a = (await addChild(boardId, root.id, 'a'))!;
+    await toggleCollapsed(a, true);
+    expect((await db.ideas.get(a))?.collapsed).toBe(true);
+    await addChild(boardId, a, 'a1');
+    expect((await db.ideas.get(a))?.collapsed).toBe(false);
   });
 });

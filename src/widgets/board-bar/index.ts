@@ -1,0 +1,1 @@
+export { BoardBar } from './BoardBar';

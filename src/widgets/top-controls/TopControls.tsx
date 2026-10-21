@@ -1,4 +1,5 @@
 import { BackupMenu } from '@/features/data-backup';
+import { SearchButton } from '@/features/global-search';
 import { LanguageSwitch } from '@/features/language-switch';
 import { ThemeSwitch } from '@/features/theme-switch';
 
@@ -6,6 +7,7 @@ import { ThemeSwitch } from '@/features/theme-switch';
 export function TopControls() {
   return (
     <div className="absolute end-4 top-3 z-30 flex items-center gap-2 rounded-2xl border border-border bg-surface/90 p-1.5 shadow-lg backdrop-blur">
+      <SearchButton />
       <BackupMenu />
       <LanguageSwitch />
       <ThemeSwitch />

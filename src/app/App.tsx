@@ -1,4 +1,5 @@
 import { lazy, Suspense } from 'react';
+import { SearchDialog } from '@/features/global-search';
 import { BoardsPage } from '@/pages/boards';
 import { matchBoardId, useHashPath } from '@/shared/lib';
 import { AppSidebar, SidebarToggle } from '@/widgets/app-sidebar';
@@ -16,6 +17,7 @@ export function App() {
       <main className="relative min-w-0 flex-1 overflow-y-auto">
         <SidebarToggle />
         <TopControls />
+        <SearchDialog />
         {boardId ? (
           <Suspense fallback={null}>
             <BoardPage boardId={boardId} />

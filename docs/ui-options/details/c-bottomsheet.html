@@ -1,0 +1,79 @@
+<!doctype html><meta charset="utf-8" /><link rel="stylesheet" href="tokens.css" />
+<script src="map.js"></script>
+<style>
+  .sheet {
+    position: absolute;
+    left: 24px;
+    right: 24px;
+    bottom: 24px;
+    height: 300px;
+    border-radius: 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: 0 -10px 50px #0006;
+    display: grid;
+    grid-template-columns: 1.1fr 1.3fr 0.8fr;
+    gap: 22px;
+    padding: 22px 26px;
+  }
+  .grab {
+    position: absolute;
+    left: 50%;
+    top: 8px;
+    width: 46px;
+    height: 5px;
+    border-radius: 9px;
+    background: var(--border);
+    transform: translateX(-50%);
+  }
+  .col {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 0;
+  }
+  .col h3 {
+    margin: 0;
+    font-size: 18px;
+  }
+</style>
+<div class="stage"></div>
+<script>
+  drawMap({ cx: 720, cy: 290, scale: 0.78 });
+</script>
+<div class="sheet">
+  <div class="grab"></div>
+  <div class="col">
+    <h3>Marketing</h3>
+    <p class="lbl">Description</p>
+    <div class="field" style="flex: 1">
+      Plan the launch week: teaser posts, press kit and newsletter.
+    </div>
+    <div>
+      <span class="chip">#gtm</span> <span class="chip">#q4</span>
+      <span class="chip muted">+ tag</span>
+    </div>
+  </div>
+  <div class="col">
+    <p class="lbl" style="margin-top: 6px">Notes · 2</p>
+    <div class="field muted">Write a note… (Ctrl+Enter)</div>
+    <div class="note">Newsletter goes out Tuesday 9:00<small>Today, 3:50 AM</small></div>
+    <div class="note">Ask the designer for the teaser video<small>Today, 3:49 AM</small></div>
+  </div>
+  <div class="col">
+    <p class="lbl" style="margin-top: 6px">Color</p>
+    <div style="display: flex; gap: 8px">
+      <b
+        class="c0"
+        style="width: 24px; height: 24px; border-radius: 50%; border: 2px solid var(--border)"
+      ></b
+      ><b class="c1" style="width: 24px; height: 24px; border-radius: 50%"></b
+      ><b class="c2" style="width: 24px; height: 24px; border-radius: 50%"></b
+      ><b class="c3" style="width: 24px; height: 24px; border-radius: 50%"></b
+      ><b class="c4" style="width: 24px; height: 24px; border-radius: 50%"></b>
+    </div>
+    <p class="lbl">Linked ideas</p>
+    <div class="note">Design<small>✕ remove</small></div>
+    <span class="btn" style="text-align: center; margin-top: auto">Delete idea</span>
+  </div>
+</div>

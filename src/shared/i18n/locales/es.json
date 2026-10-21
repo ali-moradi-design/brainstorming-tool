@@ -1,7 +1,7 @@
 {
   "app": {
-    "title": "Lluvia de ideas",
-    "tagline": "Vuelca tus ideas en un mapa mental. Todo se queda en tu dispositivo."
+    "title": "Ideabloom",
+    "tagline": "Deja que tus ideas florezcan. Todo se queda en tu dispositivo."
   },
   "nav": {
     "back": "Todos los tableros"
@@ -13,7 +13,8 @@
     "create": "Crear tablero",
     "delete": "Eliminar tablero",
     "deleteConfirm": "¿Eliminar este tablero y todas sus ideas?",
-    "updated": "Actualizado el {{date}}"
+    "updated": "Actualizado el {{date}}",
+    "template": "Plantilla"
   },
   "board": {
     "titleLabel": "Título del tablero",
@@ -26,7 +27,11 @@
     "delete": "Eliminar (Supr)",
     "tidy": "Ordenar disposición",
     "color": "Color {{n}}",
-    "hint": "Doble clic o F2 para editar · Tab añade una hija · Enter añade una hermana"
+    "hint": "Doble clic o F2 para editar · Tab añade una hija · Enter añade una hermana",
+    "link": "Vincular con otra idea",
+    "linkHint": "Haz clic en la idea que quieres vincular (Esc para cancelar)",
+    "expand": "Expandir rama",
+    "collapse": "Contraer rama"
   },
   "theme": {
     "toLight": "Cambiar al tema claro",
@@ -59,6 +64,144 @@
     "notePlaceholder": "Escribe una nota… (Ctrl+Enter para añadir)",
     "addNote": "Añadir nota",
     "noNotes": "Aún no hay notas.",
-    "deleteNote": "Eliminar nota"
+    "deleteNote": "Eliminar nota",
+    "tags": "Etiquetas",
+    "tagPlaceholder": "Añade una etiqueta y pulsa Enter",
+    "removeTag": "Quitar etiqueta {{tag}}",
+    "links": "Ideas vinculadas",
+    "noLinks": "Aún no hay vínculos.",
+    "removeLink": "Quitar vínculo",
+    "addLink": "Vincular con otra idea…"
+  },
+  "search": {
+    "open": "Buscar",
+    "title": "Buscar",
+    "placeholder": "Busca proyectos, ideas y notas…",
+    "empty": "No se encontró nada.",
+    "kind": {
+      "board": "Proyecto",
+      "idea": "Idea",
+      "note": "Nota"
+    }
+  },
+  "exportMenu": {
+    "title": "Exportar este proyecto",
+    "png": "Imagen (PNG)",
+    "svg": "Imagen (SVG)",
+    "markdown": "Markdown (.md)"
+  },
+  "bar": {
+    "view": "Vista",
+    "map": "Vista de mapa",
+    "list": "Vista de lista",
+    "undo": "Deshacer",
+    "redo": "Rehacer",
+    "tags": "Filtrar por etiqueta",
+    "clearTags": "Quitar filtro"
+  },
+  "list": {
+    "empty": "Ninguna idea coincide con este filtro.",
+    "notes_one": "{{count}} nota",
+    "notes_other": "{{count}} notas"
+  },
+  "templates": {
+    "blank": {
+      "name": "Mapa en blanco",
+      "branches": []
+    },
+    "swot": {
+      "name": "Análisis DAFO",
+      "branches": [
+        {
+          "label": "Fortalezas"
+        },
+        {
+          "label": "Debilidades"
+        },
+        {
+          "label": "Oportunidades"
+        },
+        {
+          "label": "Amenazas"
+        }
+      ]
+    },
+    "sixHats": {
+      "name": "Seis sombreros para pensar",
+      "branches": [
+        {
+          "label": "Sombrero blanco: hechos"
+        },
+        {
+          "label": "Sombrero rojo: emociones"
+        },
+        {
+          "label": "Sombrero negro: riesgos"
+        },
+        {
+          "label": "Sombrero amarillo: beneficios"
+        },
+        {
+          "label": "Sombrero verde: creatividad"
+        },
+        {
+          "label": "Sombrero azul: proceso"
+        }
+      ]
+    },
+    "prosCons": {
+      "name": "Pros y contras",
+      "branches": [
+        {
+          "label": "Pros"
+        },
+        {
+          "label": "Contras"
+        }
+      ]
+    },
+    "fiveW1H": {
+      "name": "5W1H",
+      "branches": [
+        {
+          "label": "¿Quién?"
+        },
+        {
+          "label": "¿Qué?"
+        },
+        {
+          "label": "¿Dónde?"
+        },
+        {
+          "label": "¿Cuándo?"
+        },
+        {
+          "label": "¿Por qué?"
+        },
+        {
+          "label": "¿Cómo?"
+        }
+      ]
+    },
+    "projectPlan": {
+      "name": "Plan de proyecto",
+      "branches": [
+        {
+          "label": "Objetivos"
+        },
+        {
+          "label": "Tareas"
+        },
+        {
+          "label": "Recursos"
+        },
+        {
+          "label": "Riesgos"
+        },
+        {
+          "label": "Cronograma"
+        }
+      ]
+    }
   }
 }

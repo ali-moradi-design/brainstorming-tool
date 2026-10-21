@@ -14,6 +14,8 @@ const backupSchema = z.object({
       parentId: z.string().nullable(),
       text: z.string(),
       description: z.string().default(''),
+      collapsed: z.boolean().default(false),
+      tags: z.array(z.string()).default([]),
       x: z.number(),
       y: z.number(),
       color: z.number().int().min(0).max(4),
@@ -31,6 +33,17 @@ const backupSchema = z.object({
       }),
     )
     .default([]),
+  links: z
+    .array(
+      z.object({
+        id: z.string(),
+        boardId: z.string(),
+        fromId: z.string(),
+        toId: z.string(),
+        createdAt: z.number(),
+      }),
+    )
+    .default([]),
 });
 
 export type Backup = z.infer<typeof backupSchema>;
@@ -41,15 +54,17 @@ export const exportBackup = async (): Promise<Backup> => ({
   boards: await db.boards.toArray(),
   ideas: await db.ideas.toArray(),
   notes: await db.notes.toArray(),
+  links: await db.links.toArray(),
 });
 
 /** Merges a backup into the database (same ids are overwritten). Throws on invalid input. */
 export const importBackup = async (raw: unknown): Promise<number> => {
   const data = backupSchema.parse(raw);
-  await db.transaction('rw', db.boards, db.ideas, db.notes, async () => {
+  await db.transaction('rw', db.boards, db.ideas, db.notes, db.links, async () => {
     await db.boards.bulkPut(data.boards);
     await db.ideas.bulkPut(data.ideas);
     await db.notes.bulkPut(data.notes);
+    await db.links.bulkPut(data.links);
   });
   return data.ideas.length;
 };

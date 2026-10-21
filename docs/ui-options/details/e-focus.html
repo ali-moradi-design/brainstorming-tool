@@ -1,0 +1,88 @@
+<!doctype html><meta charset="utf-8" /><link rel="stylesheet" href="tokens.css" />
+<script src="map.js"></script>
+<style>
+  .modal {
+    position: absolute;
+    inset: 44px 90px;
+    border-radius: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: 0 30px 90px #000a;
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    overflow: hidden;
+  }
+  .left {
+    padding: 34px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    border-inline-end: 1px solid var(--border);
+  }
+  .right {
+    padding: 34px 30px;
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .crumb {
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .title {
+    font-size: 34px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+  }
+  .doc {
+    flex: 1;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+  .doc p {
+    margin: 0 0 12px;
+  }
+  .tl {
+    border-inline-start: 2px solid var(--border);
+    padding-inline-start: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .close {
+    position: absolute;
+    top: 18px;
+    inset-inline-end: 22px;
+  }
+</style>
+<div class="stage"></div>
+<script>
+  drawMap({ cx: 720, cy: 450, scale: 1, dim: 0.55 });
+</script>
+<div class="modal">
+  <span class="btn close">Esc ✕</span>
+  <div class="left">
+    <div class="crumb">Product launch › <b style="color: var(--text)">Marketing</b></div>
+    <div class="title">Marketing</div>
+    <div style="display: flex; gap: 8px; flex-wrap: wrap">
+      <span class="chip">#gtm</span><span class="chip">#q4</span
+      ><span class="chip muted">+ tag</span><span class="chip">● Blue</span
+      ><span class="chip">🔗 Design</span>
+    </div>
+    <div class="doc">
+      <p>Plan the launch week: teaser posts, press kit and newsletter.</p>
+      <p class="muted">
+        Goals: 2,000 sign-ups in week one. Owner: Sara. Budget: small, mostly organic.
+      </p>
+    </div>
+  </div>
+  <div class="right">
+    <p class="lbl">Notes timeline · 2</p>
+    <div class="field muted">Write a note… (Ctrl+Enter)</div>
+    <div class="tl">
+      <div class="note">Newsletter goes out Tuesday 9:00<small>Today, 3:50 AM</small></div>
+      <div class="note">Ask the designer for the teaser video<small>Today, 3:49 AM</small></div>
+    </div>
+  </div>
+</div>

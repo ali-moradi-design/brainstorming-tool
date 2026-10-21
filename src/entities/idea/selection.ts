@@ -5,9 +5,12 @@ type SelectionState = {
   editingId: string | null;
   /** Bumped by the outline so the canvas can pan to `focus.id`. */
   focus: { id: string; n: number } | null;
+  /** Idea to focus once its board has loaded (set by search before navigating). */
+  pending: string | null;
   select: (id: string | null) => void;
   edit: (id: string | null) => void;
   focusIdea: (id: string) => void;
+  setPending: (id: string | null) => void;
   reset: () => void;
 };
 
@@ -16,8 +19,10 @@ export const useSelection = create<SelectionState>((set) => ({
   selectedId: null,
   editingId: null,
   focus: null,
+  pending: null,
   select: (selectedId) => set({ selectedId }),
   edit: (editingId) => set({ editingId }),
   focusIdea: (id) => set((s) => ({ selectedId: id, focus: { id, n: (s.focus?.n ?? 0) + 1 } })),
+  setPending: (pending) => set({ pending }),
   reset: () => set({ selectedId: null, editingId: null, focus: null }),
 }));

@@ -1,4 +1,6 @@
-# Brainstorm
+# Ideabloom
+
+![Ideabloom logo](docs/logo.png)
 
 A local-first mind-map brainstorming app. Your boards never leave your browser:
 they are stored in IndexedDB, with JSON export/import for backups.
@@ -7,6 +9,11 @@ they are stored in IndexedDB, with JSON export/import for backups.
 ![Light theme, Persian (RTL)](docs/screenshots/app-light-fa.png)
 
 ## Features
+
+- Search everything with `Ctrl+K`; undo/redo (`Ctrl+Z` / `Ctrl+Shift+Z`) per project
+- Collapse branches, free links between ideas, tags with filtering, and a list view
+- Templates (SWOT, Six Hats, Pros/Cons, 5W1H, Project plan)
+- Export as PNG, SVG or Markdown; installable offline PWA
 
 - Multiple projects in a collapsible side panel (project list + outline of the open map)
 - Radial mind map: add children (`Tab`) and siblings (`Enter`), edit (`F2` / double-click), delete (`Del`), recolor, drag, tidy layout

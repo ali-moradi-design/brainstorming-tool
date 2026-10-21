@@ -13,7 +13,7 @@ export const useIdeas = (boardId: string): IdeaRecord[] | undefined =>
   useLiveQuery(() => listIdeas(boardId), [boardId]);
 
 type NewIdea = Pick<IdeaRecord, 'boardId' | 'parentId' | 'text'> &
-  Partial<Pick<IdeaRecord, 'description' | 'x' | 'y' | 'color'>>;
+  Partial<Pick<IdeaRecord, 'description' | 'x' | 'y' | 'color' | 'tags'>>;
 
 export const addIdea = async (input: NewIdea): Promise<IdeaRecord> => {
   const idea: IdeaRecord = {
@@ -21,6 +21,8 @@ export const addIdea = async (input: NewIdea): Promise<IdeaRecord> => {
     x: 0,
     y: 0,
     color: 0,
+    collapsed: false,
+    tags: [],
     ...input,
     id: newId(),
     createdAt: Date.now(),
@@ -31,7 +33,9 @@ export const addIdea = async (input: NewIdea): Promise<IdeaRecord> => {
 
 export const updateIdea = (
   id: string,
-  patch: Partial<Pick<IdeaRecord, 'text' | 'description' | 'x' | 'y' | 'color'>>,
+  patch: Partial<
+    Pick<IdeaRecord, 'text' | 'description' | 'x' | 'y' | 'color' | 'tags' | 'collapsed'>
+  >,
 ): Promise<number> => db.ideas.update(id, patch);
 
 export const moveIdeas = (positions: Map<string, Point>): Promise<unknown> =>
@@ -43,8 +47,10 @@ export const moveIdeas = (positions: Map<string, Point>): Promise<unknown> =>
 export const removeIdeaTree = async (boardId: string, id: string): Promise<void> => {
   const ideas = await listIdeas(boardId);
   const ids = collectSubtree(ideas, id);
-  await db.transaction('rw', db.ideas, db.notes, async () => {
+  await db.transaction('rw', db.ideas, db.notes, db.links, async () => {
     await db.notes.where('ideaId').anyOf(ids).delete();
+    await db.links.where('fromId').anyOf(ids).delete();
+    await db.links.where('toId').anyOf(ids).delete();
     await db.ideas.bulkDelete(ids);
   });
 };

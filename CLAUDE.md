@@ -27,3 +27,5 @@ holds theme (`bt:theme`) and language (`bt:lang`).
 - UI: radial mind map (`@xyflow/react`, floating `IdeaEdge`), collapsible sidebar (projects + outline), details panel per idea
   (description on the idea, many notes in the `notes` table). Selection is shared through `useSelection` (entities/idea).
 - Dexie schema is versioned in `src/shared/api/db.ts`: add a new `db.version(n)` for every change. Old backups must still import (Zod defaults).
+- Brand: Ideabloom (logo in `src/shared/ui/Logo.tsx`, `public/favicon.svg`). Undo/redo: call `recordChange(boardId)` from `@/shared/lib` BEFORE every mutation of ideas/notes/links.
+- Details panel is split into sections in `features/idea-details` so its layout can be swapped (mockups in `docs/ui-options/details`).

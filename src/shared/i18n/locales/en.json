@@ -1,7 +1,7 @@
 {
   "app": {
-    "title": "Brainstorm",
-    "tagline": "Pour your ideas onto a mind map. Everything stays on your device."
+    "title": "Ideabloom",
+    "tagline": "Let your ideas bloom. Everything stays on your device."
   },
   "nav": {
     "back": "All boards"
@@ -13,7 +13,8 @@
     "create": "Create board",
     "delete": "Delete board",
     "deleteConfirm": "Delete this board and all its ideas?",
-    "updated": "Updated {{date}}"
+    "updated": "Updated {{date}}",
+    "template": "Template"
   },
   "board": {
     "titleLabel": "Board title",
@@ -26,7 +27,11 @@
     "delete": "Delete (Del)",
     "tidy": "Tidy layout",
     "color": "Color {{n}}",
-    "hint": "Double-click or F2 to edit · Tab adds a child · Enter adds a sibling"
+    "hint": "Double-click or F2 to edit · Tab adds a child · Enter adds a sibling",
+    "link": "Link to another idea",
+    "linkHint": "Click the idea you want to link to (Esc to cancel)",
+    "expand": "Expand branch",
+    "collapse": "Collapse branch"
   },
   "theme": {
     "toLight": "Switch to light theme",
@@ -59,6 +64,144 @@
     "notePlaceholder": "Write a note… (Ctrl+Enter to add)",
     "addNote": "Add note",
     "noNotes": "No notes yet.",
-    "deleteNote": "Delete note"
+    "deleteNote": "Delete note",
+    "tags": "Tags",
+    "tagPlaceholder": "Add a tag and press Enter",
+    "removeTag": "Remove tag {{tag}}",
+    "links": "Linked ideas",
+    "noLinks": "No links yet.",
+    "removeLink": "Remove link",
+    "addLink": "Link to another idea…"
+  },
+  "search": {
+    "open": "Search",
+    "title": "Search",
+    "placeholder": "Search projects, ideas and notes…",
+    "empty": "Nothing found.",
+    "kind": {
+      "board": "Project",
+      "idea": "Idea",
+      "note": "Note"
+    }
+  },
+  "exportMenu": {
+    "title": "Export this project",
+    "png": "Image (PNG)",
+    "svg": "Image (SVG)",
+    "markdown": "Markdown (.md)"
+  },
+  "bar": {
+    "view": "View",
+    "map": "Map view",
+    "list": "List view",
+    "undo": "Undo",
+    "redo": "Redo",
+    "tags": "Filter by tag",
+    "clearTags": "Clear filter"
+  },
+  "list": {
+    "empty": "No ideas match this filter.",
+    "notes_one": "{{count}} note",
+    "notes_other": "{{count}} notes"
+  },
+  "templates": {
+    "blank": {
+      "name": "Blank map",
+      "branches": []
+    },
+    "swot": {
+      "name": "SWOT analysis",
+      "branches": [
+        {
+          "label": "Strengths"
+        },
+        {
+          "label": "Weaknesses"
+        },
+        {
+          "label": "Opportunities"
+        },
+        {
+          "label": "Threats"
+        }
+      ]
+    },
+    "sixHats": {
+      "name": "Six thinking hats",
+      "branches": [
+        {
+          "label": "White hat: facts"
+        },
+        {
+          "label": "Red hat: feelings"
+        },
+        {
+          "label": "Black hat: risks"
+        },
+        {
+          "label": "Yellow hat: benefits"
+        },
+        {
+          "label": "Green hat: creativity"
+        },
+        {
+          "label": "Blue hat: process"
+        }
+      ]
+    },
+    "prosCons": {
+      "name": "Pros and cons",
+      "branches": [
+        {
+          "label": "Pros"
+        },
+        {
+          "label": "Cons"
+        }
+      ]
+    },
+    "fiveW1H": {
+      "name": "5W1H",
+      "branches": [
+        {
+          "label": "Who?"
+        },
+        {
+          "label": "What?"
+        },
+        {
+          "label": "Where?"
+        },
+        {
+          "label": "When?"
+        },
+        {
+          "label": "Why?"
+        },
+        {
+          "label": "How?"
+        }
+      ]
+    },
+    "projectPlan": {
+      "name": "Project plan",
+      "branches": [
+        {
+          "label": "Goals"
+        },
+        {
+          "label": "Tasks"
+        },
+        {
+          "label": "Resources"
+        },
+        {
+          "label": "Risks"
+        },
+        {
+          "label": "Timeline"
+        }
+      ]
+    }
   }
 }

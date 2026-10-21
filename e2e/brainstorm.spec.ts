@@ -17,6 +17,7 @@ test('creates a board with a root idea and persists after reload', async ({ page
   await expect(page.getByTestId('idea-node').locator('textarea')).toBeFocused();
   await page.keyboard.type('Landing page');
   await page.keyboard.press('Enter');
+  await expect(page.getByTestId('idea-node').getByText('Landing page')).toBeVisible(); // saved
   await expect(page.getByTestId('idea-node')).toHaveCount(2);
 
   await page.reload();
@@ -52,14 +53,14 @@ test('switches language to Persian (RTL) and Spanish', async ({ page }) => {
   await page.goto('/');
   await page.getByTestId('language-switch').selectOption('fa');
   await expect(page.locator('html')).toHaveAttribute('dir', 'rtl');
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('طوفان فکری');
+  await expect(page.getByText('بگذار ایده‌هایت شکوفا شوند')).toBeVisible();
 
   await page.getByTestId('language-switch').selectOption('es');
   await expect(page.locator('html')).toHaveAttribute('dir', 'ltr');
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Lluvia de ideas');
+  await expect(page.getByText('Deja que tus ideas florezcan')).toBeVisible();
 
   await page.reload();
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Lluvia de ideas');
+  await expect(page.getByText('Deja que tus ideas florezcan')).toBeVisible();
 });
 
 test('deletes a board from the list', async ({ page }) => {
@@ -125,4 +126,108 @@ test('outline selects an idea and the sidebar can be collapsed', async ({ page }
   await expect(sidebar).toHaveAttribute('data-open', 'false');
   await page.reload();
   await expect(page.getByTestId('sidebar')).toHaveAttribute('data-open', 'false');
+});
+
+const addChild = async (page: Page, parent: string, text: string) => {
+  await page.getByTestId('idea-node').filter({ hasText: parent }).first().click();
+  await page.getByTestId('add-child').click();
+  await expect(page.getByTestId('idea-node').locator('textarea')).toBeFocused();
+  await page.keyboard.type(text);
+  await page.keyboard.press('Enter');
+  await expect(page.getByTestId('idea-node').locator('textarea')).toHaveCount(0);
+};
+
+test('undo and redo restore the map', async ({ page }) => {
+  await createBoard(page, 'History');
+  await addChild(page, 'History', 'Extra');
+  await expect(page.getByTestId('idea-node')).toHaveCount(2);
+
+  await page.getByTestId('undo').click();
+  await expect(page.getByTestId('idea-node')).toHaveCount(1);
+  await page.getByTestId('redo').click();
+  await expect(page.getByTestId('idea-node')).toHaveCount(2);
+});
+
+test('searches across projects with Ctrl+K and opens the result', async ({ page }) => {
+  await createBoard(page, 'Alpha plan');
+  await page.goto('/#/');
+  await page.getByRole('textbox', { name: /idea/i }).first().fill('Beta plan');
+  await page.getByRole('button', { name: 'Create board' }).first().click();
+  await expect(page.getByRole('textbox', { name: 'Board title' })).toHaveValue('Beta plan');
+
+  await page.keyboard.press('Control+k');
+  await page.getByRole('textbox', { name: /Search projects/ }).fill('alpha');
+  await expect(page.getByRole('dialog').getByRole('option').first()).toContainText('Alpha plan');
+  await expect(page.getByRole('dialog').getByRole('option').first()).toHaveAttribute(
+    'aria-selected',
+    'true',
+  );
+  await page.keyboard.press('Enter');
+  await expect(page.getByRole('textbox', { name: 'Board title' })).toHaveValue('Alpha plan');
+});
+
+test('tags filter the map and the list view shows every idea', async ({ page }) => {
+  await createBoard(page, 'Tags');
+  await addChild(page, 'Tags', 'Urgent task');
+  const panel = page.getByTestId('details-panel');
+  await panel.getByLabel('Add a tag and press Enter').fill('urgent');
+  await page.keyboard.press('Enter');
+  await expect(panel.getByText('#urgent')).toBeVisible();
+
+  await page.getByRole('button', { name: '#urgent' }).last().click();
+  await page.getByTestId('view-list').click();
+  await expect(page.getByTestId('idea-list').getByRole('button')).toHaveCount(1);
+  await page.getByRole('button', { name: 'Clear filter' }).click();
+  await expect(page.getByTestId('idea-list').getByRole('button')).toHaveCount(2);
+});
+
+test('links two ideas in link mode', async ({ page }) => {
+  await createBoard(page, 'Links');
+  await addChild(page, 'Links', 'Kid one');
+  await addChild(page, 'Links', 'Kid two');
+  await page.getByTestId('idea-node').filter({ hasText: 'Kid one' }).click();
+  await page.getByTestId('link-mode').click();
+  await page.getByTestId('idea-node').filter({ hasText: 'Kid two' }).click();
+  await page.getByTestId('idea-node').filter({ hasText: 'Kid one' }).click();
+  await expect(
+    page.getByTestId('details-panel').getByText('Kid two', { exact: true }),
+  ).toBeVisible();
+});
+
+test('collapses and expands a branch', async ({ page }) => {
+  await createBoard(page, 'Branches');
+  await addChild(page, 'Branches', 'Leaf');
+  await expect(page.getByTestId('idea-node')).toHaveCount(2);
+
+  const root = page.getByTestId('idea-node').filter({ hasText: 'Branches' });
+  const toggle = root.getByTestId('collapse-toggle');
+  await root.hover();
+  await toggle.click();
+  await expect(toggle).toHaveAttribute('aria-expanded', 'false');
+  await expect(page.getByTestId('idea-node')).toHaveCount(1);
+
+  await toggle.click();
+  await expect(toggle).toHaveAttribute('aria-expanded', 'true');
+  await expect(page.getByTestId('idea-node')).toHaveCount(2);
+});
+
+test('creates a project from the SWOT template', async ({ page }) => {
+  await page.goto('/');
+  await page.getByTestId('template-select').first().selectOption({ label: 'SWOT analysis' });
+  await page.getByRole('textbox', { name: /idea/i }).first().fill('My SWOT');
+  await page.getByRole('button', { name: 'Create board' }).first().click();
+  await expect(page.getByTestId('idea-node')).toHaveCount(5);
+  await expect(page.getByTestId('idea-node').getByText('Opportunities')).toBeVisible();
+});
+
+test('exports a project as Markdown and serves the PWA manifest', async ({ page, request }) => {
+  await createBoard(page, 'Export me');
+  await page.getByTestId('export-menu').click();
+  const download = page.waitForEvent('download');
+  await page.getByTestId('export-markdown').click();
+  expect((await download).suggestedFilename()).toBe('Export-me.md');
+
+  const manifest = await request.get('/manifest.webmanifest');
+  expect(manifest.ok()).toBe(true);
+  expect((await manifest.json()).name).toBe('Ideabloom');
 });

@@ -19,6 +19,9 @@ export interface IdeaRecord {
   y: number;
   /** Index into the idea color palette (see `--idea-N-*` tokens). */
   color: number;
+  /** Hides all descendants on the canvas. */
+  collapsed: boolean;
+  tags: string[];
   createdAt: number;
 }
 
@@ -31,10 +34,20 @@ export interface NoteRecord {
   createdAt: number;
 }
 
+/** A free link between two ideas that are not parent and child. */
+export interface LinkRecord {
+  id: string;
+  boardId: string;
+  fromId: string;
+  toId: string;
+  createdAt: number;
+}
+
 type BrainstormDB = Dexie & {
   boards: EntityTable<BoardRecord, 'id'>;
   ideas: EntityTable<IdeaRecord, 'id'>;
   notes: EntityTable<NoteRecord, 'id'>;
+  links: EntityTable<LinkRecord, 'id'>;
 };
 
 export const db = new Dexie('brainstorming-tool') as BrainstormDB;
@@ -53,5 +66,17 @@ db.version(2)
       .toCollection()
       .modify((idea) => {
         idea.description = '';
+      }),
+  );
+
+db.version(3)
+  .stores({ links: 'id, boardId, fromId, toId' })
+  .upgrade((tx) =>
+    tx
+      .table('ideas')
+      .toCollection()
+      .modify((idea) => {
+        idea.collapsed = false;
+        idea.tags = [];
       }),
   );

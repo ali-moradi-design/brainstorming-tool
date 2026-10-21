@@ -1,4 +1,3 @@
-/* eslint-disable react-refresh/only-export-components -- icon factory */
 import type { SVGProps } from 'react';
 
 const base: SVGProps<SVGSVGElement> = {
@@ -34,12 +33,14 @@ export const LayoutIcon = icon('M4 5h6v5H4zM14 3h6v5h-6zM14 14h6v5h-6zM10 8h2v9h
 export const BranchIcon = icon('M6 4v10a4 4 0 0 0 4 4h8M14 14l4 4-4 4');
 export const SidebarIcon = icon('M4 5h16v14H4zM9 5v14');
 export const ArrowIcon = icon('M19 12H5M11 6l-6 6 6 6');
-export const LogoIcon = (props: SVGProps<SVGSVGElement>) => (
-  <svg {...base} {...props} strokeWidth={1.8}>
-    <circle cx="12" cy="12" r="3" fill="currentColor" />
-    <circle cx="4.5" cy="6" r="1.8" />
-    <circle cx="19.5" cy="6" r="1.8" />
-    <circle cx="12" cy="20" r="1.8" />
-    <path d="M6 7.2 10 10.5M18 7.2 14 10.5M12 15v3" />
-  </svg>
+export const LinkIcon = icon(
+  'M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1',
 );
+export const SearchIcon = icon('M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM20 20l-4-4');
+export const UndoIcon = icon('M9 14 4 9l5-5M4 9h10a6 6 0 0 1 0 12h-3');
+export const RedoIcon = icon('M15 14l5-5-5-5M20 9H10a6 6 0 0 0 0 12h3');
+export const MapIcon = icon(
+  'M12 9v0M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1',
+);
+export const ListIcon = icon('M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01');
+export const ShareIcon = icon('M12 3v12M7 8l5-5 5 5M5 14v6h14v-6');

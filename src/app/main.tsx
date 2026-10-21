@@ -11,3 +11,8 @@ void initI18n().then(() => {
     </StrictMode>,
   );
 });
+
+// Register the service worker (offline support) in production builds only.
+if (import.meta.env.PROD && 'serviceWorker' in navigator) {
+  window.addEventListener('load', () => void navigator.serviceWorker.register('/sw.js'));
+}

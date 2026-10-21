@@ -1,0 +1,8 @@
+import { create } from 'zustand';
+
+type SearchState = { open: boolean; setOpen: (open: boolean) => void };
+
+export const useSearch = create<SearchState>((set) => ({
+  open: false,
+  setOpen: (open) => set({ open }),
+}));

@@ -1,0 +1,59 @@
+<!doctype html><meta charset="utf-8" /><link rel="stylesheet" href="tokens.css" />
+<script src="map.js"></script>
+<style>
+  .big {
+    position: absolute;
+    left: 560px;
+    top: 150px;
+    width: 420px;
+    border-radius: 26px;
+    background: var(--idea-1-bg);
+    color: var(--idea-1-fg);
+    box-shadow:
+      0 0 0 4px color-mix(in srgb, var(--accent) 45%, transparent),
+      0 26px 60px #0007;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .big .field {
+    background: #0003;
+    border-color: #fff3;
+    color: inherit;
+  }
+  .big .note {
+    background: #0003;
+    border-color: #fff2;
+  }
+  .big small {
+    color: inherit;
+    opacity: 0.7;
+  }
+  .big .chip {
+    background: #fff2;
+    color: inherit;
+  }
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+</style>
+<div class="stage"></div>
+<script>
+  drawMap({ cx: 380, cy: 470, scale: 0.85 });
+</script>
+<div class="big">
+  <div class="row">
+    <b style="font-size: 22px">Marketing</b><span class="chip">▾ collapse card</span>
+  </div>
+  <div class="field">Plan the launch week: teaser posts, press kit and newsletter.</div>
+  <div>
+    <span class="chip">#gtm</span> <span class="chip">#q4</span> <span class="chip">+ tag</span>
+  </div>
+  <p class="lbl" style="color: inherit; opacity: 0.7; margin: 4px 0 0">Notes · 2</p>
+  <div class="note">Newsletter goes out Tuesday 9:00<small>Today, 3:50 AM</small></div>
+  <div class="note">Ask the designer for the teaser video<small>Today, 3:49 AM</small></div>
+  <div class="field" style="opacity: 0.75">＋ Add a note…</div>
+</div>

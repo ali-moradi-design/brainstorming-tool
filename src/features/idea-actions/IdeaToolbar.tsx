@@ -1,13 +1,16 @@
 import { useTranslation } from 'react-i18next';
-import { updateIdea, IDEA_COLORS } from '@/entities/idea';
-import { Button, BranchIcon, LayoutIcon, PlusIcon, TrashIcon } from '@/shared/ui';
+import { IDEA_COLORS } from '@/entities/idea';
+import { BranchIcon, Button, LayoutIcon, LinkIcon, PlusIcon, TrashIcon } from '@/shared/ui';
 
 type Props = {
   selectedId: string | null;
   selectedColor: number;
   canDelete: boolean;
+  linkMode: boolean;
   onAddChild: () => void;
   onAddSibling: () => void;
+  onColor: (color: number) => void;
+  onToggleLink: () => void;
   onDelete: () => void;
   onTidy: () => void;
 };
@@ -19,7 +22,7 @@ export function IdeaToolbar(p: Props) {
   return (
     <div
       role="toolbar"
-      className="flex items-center gap-1.5 rounded-xl border border-border bg-surface p-1.5 shadow-lg"
+      className="flex items-center gap-1.5 rounded-2xl border border-border bg-surface p-1.5 shadow-lg"
     >
       <Button
         onClick={p.onAddChild}
@@ -38,6 +41,17 @@ export function IdeaToolbar(p: Props) {
       >
         <PlusIcon />
       </Button>
+      <Button
+        variant={p.linkMode ? 'primary' : 'ghost'}
+        onClick={p.onToggleLink}
+        disabled={!hasSelection}
+        aria-pressed={p.linkMode}
+        title={t('idea.link')}
+        aria-label={t('idea.link')}
+        data-testid="link-mode"
+      >
+        <LinkIcon />
+      </Button>
       <div className="mx-1 flex items-center gap-1" role="group">
         {IDEA_COLORS.map((c) => (
           <button
@@ -46,7 +60,7 @@ export function IdeaToolbar(p: Props) {
             disabled={!hasSelection}
             aria-label={t('idea.color', { n: c + 1 })}
             aria-pressed={hasSelection && p.selectedColor === c}
-            onClick={() => p.selectedId && void updateIdea(p.selectedId, { color: c })}
+            onClick={() => p.onColor(c)}
             style={{ background: `var(--idea-${c}-bg)` }}
             className="size-5 rounded-full border-2 border-border disabled:opacity-40 aria-pressed:border-accent aria-pressed:ring-2 aria-pressed:ring-accent"
           />

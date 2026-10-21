@@ -1,1 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#124e78"/><circle cx="16" cy="16" r="4" fill="#fff"/><circle cx="7" cy="9" r="2.5" fill="#f2bb05"/><circle cx="25" cy="9" r="2.5" fill="#f2bb05"/><circle cx="16" cy="26" r="2.5" fill="#f2bb05"/><path d="M8.5 10.5 13 14M23.5 10.5 19 14M16 20v4" stroke="#fff" stroke-width="1.5"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="16" fill="#124e78"/>
+  <g transform="translate(32 32)">
+    <ellipse cx="0" cy="-13" rx="6.2" ry="11" fill="#f2bb05"/>
+    <ellipse cx="0" cy="-13" rx="6.2" ry="11" fill="#d74e09" transform="rotate(60)"/>
+    <ellipse cx="0" cy="-13" rx="6.2" ry="11" fill="#f2bb05" transform="rotate(120)"/>
+    <ellipse cx="0" cy="-13" rx="6.2" ry="11" fill="#d74e09" transform="rotate(180)"/>
+    <ellipse cx="0" cy="-13" rx="6.2" ry="11" fill="#f2bb05" transform="rotate(240)"/>
+    <ellipse cx="0" cy="-13" rx="6.2" ry="11" fill="#d74e09" transform="rotate(300)"/>
+    <circle r="7.5" fill="#f0f0c9"/>
+    <circle r="3" fill="#124e78"/>
+  </g>
+</svg>

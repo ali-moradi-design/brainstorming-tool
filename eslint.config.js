@@ -41,7 +41,7 @@ const fsdOverrides = layers.map((layer) => ({
 }));
 
 export default tseslint.config(
-  { ignores: ['dist', 'graphify-out', 'playwright-report', 'test-results'] },
+  { ignores: ['dist', 'public', 'docs', 'graphify-out', 'playwright-report', 'test-results'] },
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {
