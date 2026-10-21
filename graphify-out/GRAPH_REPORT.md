@@ -6,12 +6,12 @@
 - Unclassified: 8 file(s) not represented in the graph (top: (none) 3, .conf 2, .css 2)
 
 ## Summary
-- 464 nodes · 1209 edges · 29 communities (21 shown, 8 thin omitted)
+- 508 nodes · 1160 edges · 29 communities (21 shown, 8 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 7 edges (avg confidence: 0.88)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `7d0abdb1`
+- Built from commit: `7b6d6db6`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -32,7 +32,7 @@
 - Ideabloom
 - ExportMenu.tsx
 - api/index.ts
-- lib/index.ts
+- BoardCanvas.tsx
 - BoardPage.tsx
 - eslint.config.js
 - brainstorm.spec.ts
@@ -40,31 +40,31 @@
 - jest.config.ts
 - jest.setup.ts
 - pnpm
-- IdeaEdge.tsx
+- createBoard.ts
 
 ## God Nodes (most connected - your core abstractions)
 1. `react-i18next` - 24 edges
-2. `Button()` - 24 edges
-3. `db` - 21 edges
-4. `Canvas()` - 21 edges
-5. `recordChange()` - 19 edges
-6. `react` - 18 edges
-7. `useIdeas()` - 17 edges
-8. `compilerOptions` - 16 edges
-9. `updateIdea()` - 14 edges
-10. `IdeaDetailsPanel()` - 14 edges
+2. `Button()` - 18 edges
+3. `react` - 18 edges
+4. `db` - 17 edges
+5. `compilerOptions` - 16 edges
+6. `listIdeas()` - 12 edges
+7. `ExportMenu()` - 12 edges
+8. `BoardBar()` - 12 edges
+9. `AppSidebar()` - 12 edges
+10. `useIdeas()` - 11 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `Project` --references--> `IdeaEdge()`  [INFERRED]
   CLAUDE.md → src/entities/idea/IdeaEdge.tsx
 - `Teaching plan (one stage per session)` --references--> `searchAll()`  [INFERRED]
   notes/session-log.md → src/features/global-search/search.ts
-- `App()` --calls--> `SearchDialog()`  [EXTRACTED]
-  src/app/App.tsx → src/features/global-search/SearchDialog.tsx
-- `TagsSection()` --calls--> `useIdeas()`  [EXTRACTED]
+- `TopControls()` --calls--> `BackupMenu()`  [EXTRACTED]
+  src/widgets/top-controls/TopControls.tsx → src/features/data-backup/BackupMenu.tsx
+- `addIdea()` --calls--> `newId()`  [EXTRACTED]
+  src/entities/idea/api.ts → src/shared/lib/id.ts
+- `TagsSection()` --calls--> `updateIdea()`  [EXTRACTED]
   src/features/idea-details/TagsSection.tsx → src/entities/idea/api.ts
-- `BoardPage()` --calls--> `useIdeas()`  [EXTRACTED]
-  src/pages/board/BoardPage.tsx → src/entities/idea/api.ts
 
 ## Import Cycles
 - None detected.
@@ -72,32 +72,32 @@
 ## Communities (29 total, 8 thin omitted)
 
 ### Community 0 - "package.json"
-Cohesion: 0.09
-Nodes (21): name, private, type, version, dexie, eslint, @fontsource-variable/inter, @fontsource-variable/vazirmatn (+13 more)
+Cohesion: 0.10
+Nodes (19): name, private, type, version, dexie, eslint, @fontsource-variable/inter, @fontsource-variable/vazirmatn (+11 more)
 
 ### Community 1 - "idea/index.ts"
 Cohesion: 0.11
-Nodes (42): @xyflow/react, touchBoard(), addIdea(), byCreation(), listIdeas(), moveIdeas(), NewIdea, removeIdeaTree() (+34 more)
+Nodes (33): dexie-react-hooks, touchBoard(), addIdea(), byCreation(), listIdeas(), moveIdeas(), NewIdea, removeIdeaTree() (+25 more)
 
 ### Community 2 - "AppSidebar.tsx"
-Cohesion: 0.13
-Nodes (25): react, App(), BoardPage, useBoards(), BoardCard(), BoardListItem(), Props, CreateBoardForm() (+17 more)
+Cohesion: 0.16
+Nodes (21): App(), BoardPage, useBoards(), BoardCard(), deleteBoard(), DeleteBoardButton(), BoardsPage(), boardPath() (+13 more)
 
 ### Community 3 - "devDependencies"
 Cohesion: 0.07
 Nodes (28): devDependencies, eslint, eslint-config-prettier, @eslint/js, eslint-plugin-react-hooks, eslint-plugin-react-refresh, fake-indexeddb, globals (+20 more)
 
 ### Community 4 - "react-i18next"
-Cohesion: 0.22
-Nodes (10): react-i18next, LanguageSwitch(), applyLanguage(), initI18n(), readStoredLanguage(), isLanguage(), LANG_STORAGE_KEY, LanguageCode (+2 more)
+Cohesion: 0.19
+Nodes (10): react-dom, LanguageSwitch(), applyLanguage(), initI18n(), readStoredLanguage(), isLanguage(), LANG_STORAGE_KEY, LanguageCode (+2 more)
 
 ### Community 5 - "BackupMenu.tsx"
 Cohesion: 0.18
-Nodes (14): zod, Backup, backupSchema, coord, exportBackup(), id, importBackup(), MAX_BACKUP_BYTES (+6 more)
+Nodes (12): zod, Backup, backupSchema, coord, exportBackup(), id, importBackup(), MAX_BACKUP_BYTES (+4 more)
 
 ### Community 6 - "icons.tsx"
-Cohesion: 0.09
-Nodes (30): i18next, @testing-library/react, @testing-library/user-event, zustand, IDEA_COLORS, SelectionState, IdeaToolbar(), Props (+22 more)
+Cohesion: 0.08
+Nodes (33): i18next, react, @testing-library/react, @testing-library/user-event, IDEA_COLORS, SearchButton(), IdeaToolbar(), Props (+25 more)
 
 ### Community 7 - "compilerOptions"
 Cohesion: 0.11
@@ -105,7 +105,7 @@ Nodes (17): compilerOptions, isolatedModules, jsx, lib, module, moduleResolution
 
 ### Community 8 - "SearchDialog.tsx"
 Cohesion: 0.15
-Nodes (17): Concepts and gotchas learned (good teaching material), Decisions made with the user, How to run, Ideabloom: session log and teaching notes, Map of the code (`src/`, Feature-Sliced Design), Teaching plan (one stage per session), Teaching progress, What exists (everything is on `main`) (+9 more)
+Nodes (15): Concepts and gotchas learned (good teaching material), Decisions made with the user, How to run, Ideabloom: session log and teaching notes, Map of the code (`src/`, Feature-Sliced Design), Teaching plan (one stage per session), Teaching progress, What exists (everything is on `main`) (+7 more)
 
 ### Community 9 - "dependencies"
 Cohesion: 0.15
@@ -128,20 +128,20 @@ Cohesion: 0.17
 Nodes (10): Deploying and security, Features, Ideabloom, Scripts, Stack, Known limits, Reporting, Security notes for Ideabloom (+2 more)
 
 ### Community 15 - "ExportMenu.tsx"
-Cohesion: 0.33
-Nodes (10): getCanvasNodes(), ExportMenu(), MenuItem(), slug(), downloadText(), downloadUrl(), ImageFormat, renderBoardImage() (+2 more)
+Cohesion: 0.13
+Nodes (20): graphify, Project, Session workflow, html-to-image, @xyflow/react, getCanvasNodes(), registerCanvasNodes(), borderPoint() (+12 more)
 
 ### Community 16 - "api/index.ts"
-Cohesion: 0.13
-Nodes (20): dexie-react-hooks, Props, BRANCH_COLORS, createBoard(), Props, TEMPLATE_KEYS, TemplateBranch, TemplateKey (+12 more)
+Cohesion: 0.15
+Nodes (17): renameBoard(), useBoard(), Props, BoardListItem(), Props, BoardRecord, BrainstormDB, db (+9 more)
 
-### Community 17 - "lib/index.ts"
-Cohesion: 0.23
-Nodes (16): allTags(), addNote(), removeNote(), updateNote(), useIdeaNotes(), change(), ColorField(), DescriptionField() (+8 more)
+### Community 17 - "BoardCanvas.tsx"
+Cohesion: 0.06
+Nodes (17): react-i18next, change(), ColorField(), DescriptionField(), fieldClass, TitleField(), IdeaDetailsPanel(), Props (+9 more)
 
 ### Community 18 - "BoardPage.tsx"
-Cohesion: 0.19
-Nodes (16): renameBoard(), useBoard(), buildOutline(), useSelection, useViewState, useNoteCounts(), BoardPage(), ListIcon (+8 more)
+Cohesion: 0.16
+Nodes (18): zustand, useIdeas(), buildOutline(), SelectionState, useSelection, allTags(), BoardView, matchesTags() (+10 more)
 
 ### Community 19 - "eslint.config.js"
 Cohesion: 0.20
@@ -151,29 +151,29 @@ Nodes (10): fsdOverrides, layers, noUpwardImports(), sliced, eslint-config-prett
 Cohesion: 0.29
 Nodes (4): @tailwindcss/vite, vite, @vitejs/plugin-react, CSP
 
-### Community 27 - "IdeaEdge.tsx"
-Cohesion: 0.28
-Nodes (7): graphify, Project, Session workflow, borderPoint(), IdeaEdge(), Rect, rectOf()
+### Community 27 - "createBoard.ts"
+Cohesion: 0.19
+Nodes (13): addNote(), removeNote(), updateNote(), useIdeaNotes(), useNoteCounts(), BRANCH_COLORS, createBoard(), CreateBoardForm() (+5 more)
 
 ## Knowledge Gaps
-- **14 isolated node(s):** `@fontsource-variable/inter`, `@fontsource-variable/vazirmatn`, `@swc/core`, `@swc/jest`, `@types/jest` (+9 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 166 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **14 isolated node(s):** `eslint`, `@fontsource-variable/inter`, `@fontsource-variable/vazirmatn`, `identity-obj-proxy`, `jest-environment-jsdom` (+9 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 201 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **8 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `react-i18next` connect `react-i18next` to `package.json`, `idea/index.ts`, `AppSidebar.tsx`, `BackupMenu.tsx`, `icons.tsx`, `SearchDialog.tsx`, `ExportMenu.tsx`, `api/index.ts`, `lib/index.ts`, `BoardPage.tsx`?**
-  _High betweenness centrality (0.177) - this node is a cross-community bridge._
-- **What connects `@fontsource-variable/inter`, `@fontsource-variable/vazirmatn`, `@swc/core` to the rest of the system?**
+- **Why does `react-i18next` connect `BoardCanvas.tsx` to `package.json`, `idea/index.ts`, `AppSidebar.tsx`, `react-i18next`, `BackupMenu.tsx`, `icons.tsx`, `SearchDialog.tsx`, `ExportMenu.tsx`, `api/index.ts`, `BoardPage.tsx`, `createBoard.ts`?**
+  _High betweenness centrality (0.187) - this node is a cross-community bridge._
+- **What connects `eslint`, `@fontsource-variable/inter`, `@fontsource-variable/vazirmatn` to the rest of the system?**
   _14 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `package.json` be split into smaller, more focused modules?**
-  _Cohesion score 0.09090909090909091 - nodes in this community are weakly interconnected._
-- **Why does `react` connect `AppSidebar.tsx` to `package.json`, `idea/index.ts`, `BackupMenu.tsx`, `icons.tsx`, `SearchDialog.tsx`, `ExportMenu.tsx`, `api/index.ts`, `lib/index.ts`, `BoardPage.tsx`?**
+  _Cohesion score 0.1 - nodes in this community are weakly interconnected._
+- **Why does `react` connect `icons.tsx` to `package.json`, `idea/index.ts`, `AppSidebar.tsx`, `react-i18next`, `BackupMenu.tsx`, `SearchDialog.tsx`, `ExportMenu.tsx`, `api/index.ts`, `BoardCanvas.tsx`, `BoardPage.tsx`, `createBoard.ts`?**
   _High betweenness centrality (0.116) - this node is a cross-community bridge._
 - **Should `idea/index.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.11403508771929824 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.10938775510204081 - nodes in this community are weakly interconnected._
 - **Why does `devDependencies` connect `devDependencies` to `package.json`?**
-  _High betweenness centrality (0.100) - this node is a cross-community bridge._
-- **Should `AppSidebar.tsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.13076923076923078 - nodes in this community are weakly interconnected._
+  _High betweenness centrality (0.093) - this node is a cross-community bridge._
+- **Should `devDependencies` be split into smaller, more focused modules?**
+  _Cohesion score 0.07142857142857142 - nodes in this community are weakly interconnected._

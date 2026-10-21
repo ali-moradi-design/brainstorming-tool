@@ -16,7 +16,7 @@
   "14": "Ideabloom",
   "15": "ExportMenu.tsx",
   "16": "api/index.ts",
-  "17": "lib/index.ts",
+  "17": "BoardCanvas.tsx",
   "18": "BoardPage.tsx",
   "19": "eslint.config.js",
   "20": "brainstorm.spec.ts",
@@ -26,6 +26,6 @@
   "24": "map.js",
   "25": "pnpm",
   "26": "sw.js",
-  "27": "IdeaEdge.tsx",
+  "27": "createBoard.ts",
   "28": "theme-init.js"
 }
