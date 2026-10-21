@@ -4,7 +4,7 @@
   "2": "AppSidebar.tsx",
   "3": "devDependencies",
   "4": "react-i18next",
-  "5": "SearchDialog.tsx",
+  "5": "BackupMenu.tsx",
   "6": "icons.tsx",
   "7": "compilerOptions",
   "8": "store.ts",
@@ -17,7 +17,7 @@
   "15": "ExportMenu.tsx",
   "16": "api/index.ts",
   "17": "lib/index.ts",
-  "18": "BoardPage.tsx",
+  "18": "createBoard.ts",
   "19": "eslint.config.js",
   "20": "brainstorm.spec.ts",
   "21": "vite.config.ts",
@@ -25,5 +25,6 @@
   "23": "jest.setup.ts",
   "24": "map.js",
   "25": "pnpm",
-  "26": "sw.js"
+  "26": "sw.js",
+  "27": "IdeaEdge.tsx"
 }
