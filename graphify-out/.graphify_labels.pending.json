@@ -14,13 +14,7 @@
   "12": "jest.polyfills.ts",
   "13": ".prettierrc.json",
   "14": "Brainstorm",
-  "15": "CLAUDE.md",
+  "15": "IdeaEdge.tsx",
   "16": "IdeaDetailsPanel.tsx",
-  "17": "eslint.config.js",
-  "18": "BoardPage.tsx",
-  "19": "vite.config.ts",
-  "20": "@playwright/test",
-  "21": "jest.config.ts",
-  "22": "jest.setup.ts",
-  "23": "pnpm"
+  "17": "BoardsPage.tsx"
 }
