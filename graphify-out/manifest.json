@@ -258,8 +258,8 @@
     "semantic_hash": ""
   },
   "src/shared/api/db.ts": {
-    "mtime": 1792553017.326752,
-    "seen": 1792553461.2279897,
+    "mtime": 1792553720.147262,
+    "seen": 1792553799.9223711,
     "ast_hash": "40b2bc86a9baa045163e39c72110cc40",
     "semantic_hash": ""
   },
@@ -390,39 +390,111 @@
     "semantic_hash": ""
   },
   "docs/screenshots/board-dark.png": {
-    "mtime": 1792553446.6027775,
-    "seen": 1792553461.2280161,
-    "ast_hash": "25a4299fa88a9eba87568308bfb3c0af",
+    "mtime": 1792553770.8227968,
+    "seen": 1792553799.922412,
+    "ast_hash": "197727adea2ef10f5c072cda2f9b3e20",
     "semantic_hash": ""
   },
   "docs/screenshots/board-light-fa.png": {
-    "mtime": 1792553447.3987775,
-    "seen": 1792553461.228017,
-    "ast_hash": "1a944139ac97f33bee00c05ec0889285",
+    "mtime": 1792553771.5987968,
+    "seen": 1792553799.9224133,
+    "ast_hash": "beb182a5eea4f02168591f5926cbfde9",
     "semantic_hash": ""
   },
   "docs/screenshots/board-light.png": {
-    "mtime": 1792553447.0267775,
-    "seen": 1792553461.2280185,
-    "ast_hash": "a72067de59fa49ba2f1054f4c6acf018",
+    "mtime": 1792553771.2267969,
+    "seen": 1792553799.9224145,
+    "ast_hash": "b7395ecd926f0a037ba8fc312a8c786f",
     "semantic_hash": ""
   },
   "docs/screenshots/boards-dark-es.png": {
-    "mtime": 1792553448.0947776,
-    "seen": 1792553461.2280195,
-    "ast_hash": "45d1c778982ff6d108103f82d2bb21ba",
+    "mtime": 1792553772.294797,
+    "seen": 1792553799.922416,
+    "ast_hash": "42da81ac24bf8d4090e7d242e116adc1",
     "semantic_hash": ""
   },
   "docs/screenshots/boards-dark-fa.png": {
-    "mtime": 1792553447.8227775,
-    "seen": 1792553461.2280207,
-    "ast_hash": "da17d6656f1e1e79d5ae697f587e52f8",
+    "mtime": 1792553772.0267968,
+    "seen": 1792553799.9224172,
+    "ast_hash": "f45f18b8fafc34fe22cdc15876ff1805",
     "semantic_hash": ""
   },
   "public/favicon.svg": {
-    "mtime": 1792552943.0693393,
-    "seen": 1792553461.228022,
-    "ast_hash": "e51bfb6a3af40722adea24242f3d01bd",
+    "mtime": 1792553720.1443737,
+    "seen": 1792553799.9224265,
+    "ast_hash": "3fbe930eaecd2de21386fed536c5752d",
+    "semantic_hash": ""
+  },
+  ".claude/settings.json": {
+    "mtime": 1792553475.4787793,
+    "seen": 1792553799.9222949,
+    "ast_hash": "be48c8e62516cb5dd3d3fcf3cf35f28f",
+    "semantic_hash": ""
+  },
+  "CLAUDE.md": {
+    "mtime": 1792553475.5427792,
+    "seen": 1792553799.9224038,
+    "ast_hash": "7be644d87e5ea6401927eb6ef734be5f",
+    "semantic_hash": ""
+  },
+  "README.md": {
+    "mtime": 1792553720.1499412,
+    "seen": 1792553799.9224055,
+    "ast_hash": "1161f74a3c44b548cce77be6a391f2cf",
+    "semantic_hash": ""
+  },
+  "docs/ui-options/b-sidebar.html": {
+    "mtime": 1792553789.5627978,
+    "seen": 1792553799.9224064,
+    "ast_hash": "34a5aa699dbb763b0aa557442e30cebc",
+    "semantic_hash": ""
+  },
+  "docs/ui-options/c-zen.html": {
+    "mtime": 1792553789.6187978,
+    "seen": 1792553799.9224074,
+    "ast_hash": "5d2c3b9c2342148e6fc8593f977b9b7e",
+    "semantic_hash": ""
+  },
+  "docs/ui-options/d-sticky.html": {
+    "mtime": 1792553789.658798,
+    "seen": 1792553799.9224088,
+    "ast_hash": "77f530ff8aa913f483ad6e25825f9195",
+    "semantic_hash": ""
+  },
+  "docs/ui-options/b-sidebar-dark.png": {
+    "mtime": 1792553759.1147962,
+    "seen": 1792553799.9224184,
+    "ast_hash": "39efb7d87bc239c8f622fb013d8ab7d0",
+    "semantic_hash": ""
+  },
+  "docs/ui-options/b-sidebar-light.png": {
+    "mtime": 1792553759.182796,
+    "seen": 1792553799.9224195,
+    "ast_hash": "42f24ad8d67565306a4d6a4049d9e067",
+    "semantic_hash": ""
+  },
+  "docs/ui-options/c-zen-dark.png": {
+    "mtime": 1792553759.4667962,
+    "seen": 1792553799.9224207,
+    "ast_hash": "0d8bf4544a6430572347da467033c707",
+    "semantic_hash": ""
+  },
+  "docs/ui-options/c-zen-light.png": {
+    "mtime": 1792553759.6667962,
+    "seen": 1792553799.9224222,
+    "ast_hash": "8b8ace3ce6109cf2cd907370225064e1",
+    "semantic_hash": ""
+  },
+  "docs/ui-options/d-sticky-dark.png": {
+    "mtime": 1792553759.774796,
+    "seen": 1792553799.9224238,
+    "ast_hash": "bf605bbabda762dadcad63dfcb6c912f",
+    "semantic_hash": ""
+  },
+  "docs/ui-options/d-sticky-light.png": {
+    "mtime": 1792553759.8747962,
+    "seen": 1792553799.9224248,
+    "ast_hash": "3023e6d2fc0619eb2fbd212c81f7a37b",
     "semantic_hash": ""
   }
 }

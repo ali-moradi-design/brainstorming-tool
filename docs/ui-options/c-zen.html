@@ -1,0 +1,109 @@
+<!doctype html><meta charset="utf-8" /><link rel="stylesheet" href="tokens.css" />
+<style>
+  .stage {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, var(--surface) 0, var(--bg) 70%);
+  }
+  .pill {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    border-radius: 999px;
+    padding: 9px 20px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .core {
+    padding: 22px 34px;
+    font-size: 20px;
+    border-radius: 999px;
+  }
+  .dock {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+    padding: 8px;
+    border-radius: 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: 0 14px 40px #0004;
+  }
+  .dock span {
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-size: 13px;
+  }
+  .dock .on {
+    background: var(--accent);
+    color: var(--accent-fg);
+    font-weight: 700;
+  }
+  .chip {
+    position: absolute;
+    top: 22px;
+    inset-inline-start: 24px;
+    font-weight: 800;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .chip i {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .corner {
+    position: absolute;
+    top: 18px;
+    inset-inline-end: 24px;
+    display: flex;
+    gap: 8px;
+  }
+</style>
+<div class="stage">
+  <svg id="s" width="1440" height="900" style="position: absolute"></svg>
+  <div id="n"></div>
+</div>
+<div class="chip"><i></i>Product launch</div>
+<div class="corner"><span class="btn">EN</span><span class="btn">☾</span></div>
+<div class="dock">
+  <span class="on">＋ Idea</span><span>⌘ Link</span><span>● Color</span><span>⤢ Tidy</span
+  ><span>↶ Undo</span><span>⌕ Search</span>
+</div>
+<script>
+  const cx = 720,
+    cy = 440,
+    s = document.getElementById('s'),
+    n = document.getElementById('n');
+  const br = [
+    ['Marketing', 1, ['Landing', 'Emails', 'Press kit']],
+    ['Engineering', 2, ['Auth', 'Offline']],
+    ['Design', 3, ['Colors', 'Logo']],
+    ['Community', 4, ['Discord', 'Events']],
+    ['Pricing', 1, ['Tiers', 'Trial']],
+    ['Docs', 2, ['Guides', 'API']],
+  ];
+  let svg = '',
+    html =
+      '<div class="pill core c3" style="left:' + cx + 'px;top:' + cy + 'px">Product launch</div>';
+  br.forEach(([t, c, k], i) => {
+    const a = (i / br.length) * Math.PI * 2 - Math.PI / 2,
+      x = cx + Math.cos(a) * 250,
+      y = cy + Math.sin(a) * 190;
+    svg += `<path d="M${cx} ${cy}Q${(cx + x) / 2 + Math.sin(a) * 30} ${(cy + y) / 2 - Math.cos(a) * 30} ${x} ${y}" fill="none" stroke="var(--edge)" stroke-width="3"/>`;
+    html += `<div class="pill c${c}" style="left:${x}px;top:${y}px">${t}</div>`;
+    k.forEach((kt, j) => {
+      const b = a + (j - (k.length - 1) / 2) * 0.38,
+        x2 = cx + Math.cos(b) * 430,
+        y2 = cy + Math.sin(b) * 330;
+      svg += `<path d="M${x} ${y}L${x2} ${y2}" stroke="var(--edge)" stroke-width="1.5" opacity=".7"/>`;
+      html += `<div class="pill c0" style="left:${x2}px;top:${y2}px;font-weight:500;font-size:13px;padding:6px 14px;border:1.5px solid var(--idea-0-border)">${kt}</div>`;
+    });
+  });
+  s.innerHTML = svg;
+  n.innerHTML = html;
+</script>

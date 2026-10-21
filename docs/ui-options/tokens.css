@@ -1,0 +1,119 @@
+/*
+ * Palette: #124e78 #f0f0c9 #f2bb05 #d74e09 (coolors.co)
+ * Components use only the semantic tokens below, never raw hex values.
+ */
+:root,
+[data-theme='light'] {
+  --bg: #f0f0c9;
+  --surface: #fbfbe8;
+  --surface-2: #e2e3b0;
+  --border: #c9cc94;
+  --text: #0a2a40;
+  --muted: #3f6580;
+  --accent: #124e78;
+  --accent-strong: #0c3a5a;
+  --accent-fg: #f0f0c9;
+
+  --idea-0-bg: #fbfbe8;
+  --idea-0-fg: #0a2a40;
+  --idea-0-border: #c9cc94;
+  --idea-1-bg: #124e78;
+  --idea-1-fg: #f0f0c9;
+  --idea-2-bg: #f2bb05;
+  --idea-2-fg: #0a2a40;
+  --idea-3-bg: #d74e09;
+  --idea-3-fg: #fffdf0;
+  --idea-4-bg: #0a2a40;
+  --idea-4-fg: #f0f0c9;
+  --edge: #6f93ad;
+  color-scheme: light;
+}
+
+[data-theme='dark'] {
+  --bg: #08202f;
+  --surface: #0d3550;
+  --surface-2: #124e78;
+  --border: #1d6794;
+  --text: #f0f0c9;
+  --muted: #a5bfcc;
+  --accent: #f2bb05;
+  --accent-strong: #ffd23d;
+  --accent-fg: #08202f;
+
+  --idea-0-bg: #0d3550;
+  --idea-0-fg: #f0f0c9;
+  --idea-0-border: #1d6794;
+  --idea-1-bg: #124e78;
+  --idea-1-fg: #f0f0c9;
+  --idea-2-bg: #f2bb05;
+  --idea-2-fg: #08202f;
+  --idea-3-bg: #d74e09;
+  --idea-3-fg: #fffdf0;
+  --idea-4-bg: #f0f0c9;
+  --idea-4-fg: #08202f;
+  --edge: #3f7ba3;
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, 'Segoe UI', system-ui, sans-serif;
+  height: 900px;
+  overflow: hidden;
+}
+.btn {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 13px;
+}
+.btn.primary {
+  background: var(--accent);
+  color: var(--accent-fg);
+  border-color: transparent;
+  font-weight: 600;
+}
+.node {
+  position: absolute;
+  border-radius: 12px;
+  padding: 8px 16px;
+  font-size: 14px;
+  border: 2px solid var(--idea-0-border);
+  white-space: nowrap;
+  transform: translate(-50%, -50%);
+}
+.c0 {
+  background: var(--idea-0-bg);
+  color: var(--idea-0-fg);
+}
+.c1 {
+  background: var(--idea-1-bg);
+  color: var(--idea-1-fg);
+  border-color: transparent;
+}
+.c2 {
+  background: var(--idea-2-bg);
+  color: var(--idea-2-fg);
+  border-color: transparent;
+}
+.c3 {
+  background: var(--idea-3-bg);
+  color: var(--idea-3-fg);
+  border-color: transparent;
+}
+.c4 {
+  background: var(--idea-4-bg);
+  color: var(--idea-4-fg);
+  border-color: transparent;
+}
+.dots {
+  background-image: radial-gradient(var(--border) 1.2px, transparent 1.2px);
+  background-size: 24px 24px;
+}

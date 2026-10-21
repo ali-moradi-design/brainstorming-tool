@@ -1,0 +1,168 @@
+<!doctype html><meta charset="utf-8" /><link rel="stylesheet" href="tokens.css" />
+<style>
+  .app {
+    display: grid;
+    grid-template-columns: 280px 1fr 300px;
+    height: 900px;
+  }
+  aside {
+    background: var(--surface);
+    border-inline-end: 1px solid var(--border);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .logo {
+    font-weight: 800;
+    font-size: 18px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .logo i {
+    width: 22px;
+    height: 22px;
+    border-radius: 7px;
+    background: var(--accent);
+  }
+  .item {
+    padding: 9px 12px;
+    border-radius: 10px;
+    font-size: 14px;
+    color: var(--muted);
+  }
+  .item.on {
+    background: var(--surface-2);
+    color: var(--text);
+    font-weight: 600;
+  }
+  h6 {
+    margin: 6px 0 0;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .tree div {
+    padding: 6px 8px;
+    font-size: 13px;
+    border-radius: 8px;
+  }
+  .tree .l1 {
+    margin-inline-start: 14px;
+  }
+  .tree .l2 {
+    margin-inline-start: 28px;
+    color: var(--muted);
+  }
+  .tree .sel {
+    background: var(--accent);
+    color: var(--accent-fg);
+  }
+  main {
+    position: relative;
+  }
+  .top {
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    border-bottom: 1px solid var(--border);
+    background: color-mix(in srgb, var(--bg) 90%, transparent);
+    z-index: 2;
+  }
+  .canvas {
+    position: absolute;
+    inset: 56px 0 0 0;
+  }
+  .panel {
+    background: var(--surface);
+    border-inline-start: 1px solid var(--border);
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    font-size: 14px;
+  }
+  .sw {
+    display: flex;
+    gap: 8px;
+  }
+  .sw b {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+  }
+  textarea {
+    width: 100%;
+    height: 84px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text);
+    padding: 10px;
+    font: inherit;
+  }
+</style>
+<div class="app">
+  <aside>
+    <div class="logo"><i></i>Brainstorm</div>
+    <button class="btn primary">+ New board</button>
+    <h6>Boards</h6>
+    <div class="item on">Product launch</div>
+    <div class="item">Trip to Spain</div>
+    <div class="item">Book ideas</div>
+    <div class="item">Weekly retro</div>
+    <h6>Outline</h6>
+    <div class="tree">
+      <div>Product launch</div>
+      <div class="l1 sel">Marketing</div>
+      <div class="l2">Landing page</div>
+      <div class="l2">Email campaign</div>
+      <div class="l1">Engineering</div>
+      <div class="l1">Design</div>
+    </div>
+  </aside>
+  <main>
+    <div class="top">
+      <b>Product launch</b
+      ><span style="display: flex; gap: 8px"
+        ><span class="btn">Export</span><span class="btn">EN ▾</span
+        ><span class="btn">☾</span></span
+      >
+    </div>
+    <div class="canvas dots">
+      <svg width="100%" height="100%" style="position: absolute">
+        <g fill="none" stroke="var(--edge)" stroke-width="2">
+          <path
+            d="M180 380C230 380 230 250 290 250M180 380C230 380 230 380 290 380M180 380C230 380 230 520 290 520M380 250C440 250 440 190 490 190M380 250C440 250 440 310 490 310"
+          />
+        </g>
+      </svg>
+      <div class="node c3" style="left: 120px; top: 380px; font-weight: 700">Product launch</div>
+      <div class="node c1" style="left: 335px; top: 250px; box-shadow: 0 0 0 3px var(--accent)">
+        Marketing
+      </div>
+      <div class="node c2" style="left: 335px; top: 380px">Engineering</div>
+      <div class="node c0" style="left: 335px; top: 520px">Design</div>
+      <div class="node c0" style="left: 560px; top: 190px">Landing page</div>
+      <div class="node c0" style="left: 560px; top: 310px">Email campaign</div>
+    </div>
+  </main>
+  <div class="panel">
+    <b style="font-size: 16px">Idea details</b><label style="color: var(--muted)">Text</label
+    ><textarea>Marketing</textarea><label style="color: var(--muted)">Color</label>
+    <div class="sw">
+      <b class="c0"></b><b class="c1"></b><b class="c2"></b><b class="c3"></b><b class="c4"></b>
+    </div>
+    <label style="color: var(--muted)">Notes</label
+    ><textarea>Plan the launch week: teaser posts, press kit, newsletter.</textarea
+    ><span class="btn primary" style="text-align: center">+ Add child</span
+    ><span class="btn" style="text-align: center">Delete idea</span>
+  </div>
+</div>

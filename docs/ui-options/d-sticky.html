@@ -1,0 +1,136 @@
+<!doctype html><meta charset="utf-8" /><link rel="stylesheet" href="tokens.css" />
+<style>
+  header {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    background: var(--accent);
+    color: var(--accent-fg);
+  }
+  header b {
+    font-size: 18px;
+  }
+  .tabs {
+    display: flex;
+    gap: 6px;
+  }
+  .tabs span {
+    padding: 7px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    background: #0003;
+  }
+  .tabs .on {
+    background: var(--bg);
+    color: var(--text);
+    font-weight: 700;
+  }
+  .board {
+    position: relative;
+    height: 840px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 24px;
+  }
+  .col {
+    border-radius: 18px;
+    background: var(--surface);
+    border: 1px dashed var(--border);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .col h3 {
+    margin: 0;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+  }
+  .note {
+    padding: 16px;
+    border-radius: 6px;
+    font-size: 15px;
+    line-height: 1.4;
+    box-shadow: 0 6px 14px #0003;
+    min-height: 92px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .note small {
+    opacity: 0.75;
+    font-size: 12px;
+  }
+  .r1 {
+    transform: rotate(-1.4deg);
+  }
+  .r2 {
+    transform: rotate(1.1deg);
+  }
+  .r3 {
+    transform: rotate(-0.5deg);
+  }
+  .add {
+    border: 2px dashed var(--border);
+    border-radius: 10px;
+    padding: 14px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 14px;
+  }
+  .fab {
+    position: absolute;
+    bottom: 30px;
+    inset-inline-end: 34px;
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--accent-fg);
+    font-size: 32px;
+    display: grid;
+    place-items: center;
+    box-shadow: 0 10px 28px #0006;
+  }
+</style>
+<header>
+  <b>Brainstorm</b>
+  <div class="tabs">
+    <span class="on">Sticky board</span><span>Mind map</span><span>Voting</span>
+  </div>
+  <span style="display: flex; gap: 8px"
+    ><span class="btn">EN ▾</span><span class="btn">☾</span></span
+  >
+</header>
+<div class="board">
+  <div class="col">
+    <h3>Problems <span>4</span></h3>
+    <div class="note c2 r1">Users forget where they saved ideas<small>▲ 5 votes</small></div>
+    <div class="note c0 r2">Meetings produce notes nobody reads<small>▲ 2 votes</small></div>
+    <div class="note c3 r3">Too many tools to juggle<small>▲ 3 votes</small></div>
+    <div class="add">＋ Add note</div>
+  </div>
+  <div class="col">
+    <h3>Ideas <span>5</span></h3>
+    <div class="note c1 r2">One shared mind map for the team<small>▲ 8 votes</small></div>
+    <div class="note c2 r3">Voice capture that becomes cards<small>▲ 4 votes</small></div>
+    <div class="note c0 r1">Daily random idea prompt<small>▲ 1 vote</small></div>
+    <div class="note c4 r2">Offline-first sync<small>▲ 6 votes</small></div>
+    <div class="add">＋ Add note</div>
+  </div>
+  <div class="col">
+    <h3>Next steps <span>3</span></h3>
+    <div class="note c3 r1">Prototype the canvas this week<small>👤 Ali · Fri</small></div>
+    <div class="note c1 r3">Interview 5 users<small>👤 Sara · Mon</small></div>
+    <div class="note c2 r2">Pick the launch name<small>👤 All · Sun</small></div>
+    <div class="add">＋ Add note</div>
+  </div>
+  <div class="fab">＋</div>
+</div>
