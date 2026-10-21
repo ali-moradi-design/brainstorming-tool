@@ -390,38 +390,38 @@
     "semantic_hash": ""
   },
   "docs/screenshots/board-dark.png": {
-    "mtime": 1792553770.8227968,
-    "seen": 1792553799.922412,
+    "mtime": 1792553802.7147987,
+    "seen": 1792553803.2877407,
     "ast_hash": "197727adea2ef10f5c072cda2f9b3e20",
     "semantic_hash": ""
   },
   "docs/screenshots/board-light-fa.png": {
-    "mtime": 1792553771.5987968,
-    "seen": 1792553799.9224133,
+    "mtime": 1792553802.7147987,
+    "seen": 1792553803.287742,
     "ast_hash": "beb182a5eea4f02168591f5926cbfde9",
     "semantic_hash": ""
   },
   "docs/screenshots/board-light.png": {
-    "mtime": 1792553771.2267969,
-    "seen": 1792553799.9224145,
+    "mtime": 1792553802.7187986,
+    "seen": 1792553803.2877433,
     "ast_hash": "b7395ecd926f0a037ba8fc312a8c786f",
     "semantic_hash": ""
   },
   "docs/screenshots/boards-dark-es.png": {
-    "mtime": 1792553772.294797,
-    "seen": 1792553799.922416,
+    "mtime": 1792553802.7187986,
+    "seen": 1792553803.2877448,
     "ast_hash": "42da81ac24bf8d4090e7d242e116adc1",
     "semantic_hash": ""
   },
   "docs/screenshots/boards-dark-fa.png": {
-    "mtime": 1792553772.0267968,
-    "seen": 1792553799.9224172,
+    "mtime": 1792553802.7187986,
+    "seen": 1792553803.287746,
     "ast_hash": "f45f18b8fafc34fe22cdc15876ff1805",
     "semantic_hash": ""
   },
   "public/favicon.svg": {
-    "mtime": 1792553720.1443737,
-    "seen": 1792553799.9224265,
+    "mtime": 1792553802.7307987,
+    "seen": 1792553803.287755,
     "ast_hash": "3fbe930eaecd2de21386fed536c5752d",
     "semantic_hash": ""
   },
@@ -438,62 +438,62 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1792553720.1499412,
-    "seen": 1792553799.9224055,
+    "mtime": 1792553802.7147987,
+    "seen": 1792553803.2877333,
     "ast_hash": "1161f74a3c44b548cce77be6a391f2cf",
     "semantic_hash": ""
   },
   "docs/ui-options/b-sidebar.html": {
-    "mtime": 1792553789.5627978,
-    "seen": 1792553799.9224064,
+    "mtime": 1792553802.7244318,
+    "seen": 1792553803.2877355,
     "ast_hash": "34a5aa699dbb763b0aa557442e30cebc",
     "semantic_hash": ""
   },
   "docs/ui-options/c-zen.html": {
-    "mtime": 1792553789.6187978,
-    "seen": 1792553799.9224074,
+    "mtime": 1792553802.7267988,
+    "seen": 1792553803.287737,
     "ast_hash": "5d2c3b9c2342148e6fc8593f977b9b7e",
     "semantic_hash": ""
   },
   "docs/ui-options/d-sticky.html": {
-    "mtime": 1792553789.658798,
-    "seen": 1792553799.9224088,
+    "mtime": 1792553802.7267988,
+    "seen": 1792553803.2877378,
     "ast_hash": "77f530ff8aa913f483ad6e25825f9195",
     "semantic_hash": ""
   },
   "docs/ui-options/b-sidebar-dark.png": {
-    "mtime": 1792553759.1147962,
-    "seen": 1792553799.9224184,
+    "mtime": 1792553802.7187986,
+    "seen": 1792553803.2877474,
     "ast_hash": "39efb7d87bc239c8f622fb013d8ab7d0",
     "semantic_hash": ""
   },
   "docs/ui-options/b-sidebar-light.png": {
-    "mtime": 1792553759.182796,
-    "seen": 1792553799.9224195,
+    "mtime": 1792553802.7244318,
+    "seen": 1792553803.2877486,
     "ast_hash": "42f24ad8d67565306a4d6a4049d9e067",
     "semantic_hash": ""
   },
   "docs/ui-options/c-zen-dark.png": {
-    "mtime": 1792553759.4667962,
-    "seen": 1792553799.9224207,
+    "mtime": 1792553802.7244318,
+    "seen": 1792553803.28775,
     "ast_hash": "0d8bf4544a6430572347da467033c707",
     "semantic_hash": ""
   },
   "docs/ui-options/c-zen-light.png": {
-    "mtime": 1792553759.6667962,
-    "seen": 1792553799.9224222,
+    "mtime": 1792553802.7267988,
+    "seen": 1792553803.2877514,
     "ast_hash": "8b8ace3ce6109cf2cd907370225064e1",
     "semantic_hash": ""
   },
   "docs/ui-options/d-sticky-dark.png": {
-    "mtime": 1792553759.774796,
-    "seen": 1792553799.9224238,
+    "mtime": 1792553802.7267988,
+    "seen": 1792553803.2877526,
     "ast_hash": "bf605bbabda762dadcad63dfcb6c912f",
     "semantic_hash": ""
   },
   "docs/ui-options/d-sticky-light.png": {
-    "mtime": 1792553759.8747962,
-    "seen": 1792553799.9224248,
+    "mtime": 1792553802.7267988,
+    "seen": 1792553803.287754,
     "ast_hash": "3023e6d2fc0619eb2fbd212c81f7a37b",
     "semantic_hash": ""
   }
