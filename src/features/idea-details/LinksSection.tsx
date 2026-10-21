@@ -54,9 +54,11 @@ export function LinksSection({ idea }: { idea: IdeaRecord }) {
           aria-label={t('details.addLink')}
           value=""
           onChange={async (e) => {
-            if (!e.target.value) return;
+            // Read the value first: the controlled select resets to "" while we await.
+            const targetId = e.target.value;
+            if (!targetId) return;
             await recordChange(idea.boardId);
-            await addLink(idea.boardId, idea.id, e.target.value);
+            await addLink(idea.boardId, idea.id, targetId);
           }}
           className={`${fieldClass} h-10 py-0`}
         >

@@ -7,17 +7,17 @@
   "5": "BackupMenu.tsx",
   "6": "icons.tsx",
   "7": "compilerOptions",
-  "8": "store.ts",
+  "8": "SearchDialog.tsx",
   "9": "dependencies",
   "10": "compilerOptions",
   "11": "scripts",
   "12": "jest.polyfills.ts",
   "13": ".prettierrc.json",
-  "14": "Brainstorm",
+  "14": "Ideabloom",
   "15": "ExportMenu.tsx",
   "16": "api/index.ts",
   "17": "lib/index.ts",
-  "18": "createBoard.ts",
+  "18": "BoardPage.tsx",
   "19": "eslint.config.js",
   "20": "brainstorm.spec.ts",
   "21": "vite.config.ts",
@@ -26,5 +26,6 @@
   "24": "map.js",
   "25": "pnpm",
   "26": "sw.js",
-  "27": "IdeaEdge.tsx"
+  "27": "IdeaEdge.tsx",
+  "28": "theme-init.js"
 }

@@ -71,7 +71,8 @@
     "links": "Linked ideas",
     "noLinks": "No links yet.",
     "removeLink": "Remove link",
-    "addLink": "Link to another idea…"
+    "addLink": "Link to another idea…",
+    "delete": "Delete idea"
   },
   "search": {
     "open": "Search",

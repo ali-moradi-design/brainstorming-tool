@@ -71,7 +71,8 @@
     "links": "Ideas vinculadas",
     "noLinks": "Aún no hay vínculos.",
     "removeLink": "Quitar vínculo",
-    "addLink": "Vincular con otra idea…"
+    "addLink": "Vincular con otra idea…",
+    "delete": "Eliminar idea"
   },
   "search": {
     "open": "Buscar",

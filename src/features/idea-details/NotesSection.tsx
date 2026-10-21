@@ -27,6 +27,7 @@ export function NotesSection({ idea }: { idea: IdeaRecord }) {
       </h3>
       <textarea
         value={draft}
+        maxLength={20000}
         rows={3}
         dir="auto"
         placeholder={t('details.notePlaceholder')}
@@ -55,7 +56,9 @@ export function NotesSection({ idea }: { idea: IdeaRecord }) {
             className="rounded-xl border border-border bg-bg p-3"
           >
             <textarea
+              key={note.text}
               defaultValue={note.text}
+              maxLength={20000}
               rows={2}
               dir="auto"
               aria-label={t('details.notes')}

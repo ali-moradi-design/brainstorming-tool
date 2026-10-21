@@ -115,7 +115,6 @@ test('outline selects an idea and the sidebar can be collapsed', async ({ page }
   await expect(page.getByTestId('idea-node').locator('textarea')).toBeFocused();
   await page.keyboard.type('Child idea');
   await page.keyboard.press('Enter');
-  await page.getByTestId('idea-node').first().click();
 
   await page.getByTestId('sidebar').getByRole('button', { name: 'Child idea' }).click();
   await expect(page.getByTestId('details-panel').getByLabel('Title')).toHaveValue('Child idea');
@@ -181,17 +180,23 @@ test('tags filter the map and the list view shows every idea', async ({ page }) 
   await expect(page.getByTestId('idea-list').getByRole('button')).toHaveCount(2);
 });
 
-test('links two ideas in link mode', async ({ page }) => {
-  await createBoard(page, 'Links');
-  await addChild(page, 'Links', 'Kid one');
-  await addChild(page, 'Links', 'Kid two');
-  await page.getByTestId('idea-node').filter({ hasText: 'Kid one' }).click();
-  await page.getByTestId('link-mode').click();
-  await page.getByTestId('idea-node').filter({ hasText: 'Kid two' }).click();
-  await page.getByTestId('idea-node').filter({ hasText: 'Kid one' }).click();
-  await expect(
-    page.getByTestId('details-panel').getByText('Kid two', { exact: true }),
-  ).toBeVisible();
+test.describe('link mode', () => {
+  // The details sheet takes space, so give the map room to show both ideas.
+  test.use({ viewport: { width: 1280, height: 1100 } });
+
+  test('links two ideas in link mode', async ({ page }) => {
+    await createBoard(page, 'Links');
+    await addChild(page, 'Links', 'Kid one');
+    await addChild(page, 'Links', 'Kid two');
+    await page.getByRole('button', { name: 'fit view' }).click();
+    await page.getByTestId('idea-node').filter({ hasText: 'Kid one' }).click();
+    await page.getByTestId('link-mode').click();
+    await page.getByTestId('idea-node').filter({ hasText: 'Kid two' }).click();
+    await page.getByTestId('idea-node').filter({ hasText: 'Kid one' }).click();
+    await expect(
+      page.getByTestId('details-panel').getByText('Kid two', { exact: true }),
+    ).toBeVisible();
+  });
 });
 
 test('collapses and expands a branch', async ({ page }) => {
@@ -230,4 +235,130 @@ test('exports a project as Markdown and serves the PWA manifest', async ({ page,
   const manifest = await request.get('/manifest.webmanifest');
   expect(manifest.ok()).toBe(true);
   expect((await manifest.json()).name).toBe('Ideabloom');
+});
+
+const XSS =
+  '<img src=x onerror="window.__xss=1"><script>window.__xss=2</script>"><svg onload=window.__xss=3>';
+
+test.describe('security', () => {
+  test('markup in user content is rendered as text and never executes', async ({ page }) => {
+    const dialogs: string[] = [];
+    page.on('dialog', (d) => {
+      dialogs.push(d.message());
+      void d.dismiss();
+    });
+    await createBoard(page, 'Safe');
+    await addChild(page, 'Safe', XSS);
+    const panel = page.getByTestId('details-panel');
+    await panel.getByLabel('Description').fill(XSS);
+    await panel.getByLabel('Description').blur();
+    await panel.getByLabel('Write a note', { exact: false }).fill(XSS);
+    await panel.getByTestId('add-note').click();
+    await panel.getByLabel('Add a tag and press Enter').fill('<b>x</b>');
+    await page.keyboard.press('Enter');
+    await expect(page.getByTestId('note')).toHaveCount(1);
+
+    // The payload is on screen as literal text, not as elements.
+    await expect(
+      page.getByTestId('idea-node').getByText('<img src=x', { exact: false }),
+    ).toBeVisible();
+    await expect(page.locator('main img[src="x"], main script, main svg[onload]')).toHaveCount(0);
+    expect(
+      await page.evaluate(() => (window as unknown as { __xss?: number }).__xss),
+    ).toBeUndefined();
+
+    // ...and also in the list view, search results and the sidebar.
+    await page.getByTestId('view-list').click();
+    await expect(
+      page.getByTestId('idea-list').getByText('<img src=x', { exact: false }).first(),
+    ).toBeVisible();
+    await page.keyboard.press('Control+k');
+    await page.getByRole('textbox', { name: /Search projects/ }).fill('onerror');
+    await expect(page.getByRole('dialog').getByRole('option').first()).toBeVisible();
+    expect(
+      await page.evaluate(() => (window as unknown as { __xss?: number }).__xss),
+    ).toBeUndefined();
+    expect(dialogs).toEqual([]);
+  });
+
+  test('a malicious backup file is rejected and changes nothing', async ({ page }) => {
+    await createBoard(page, 'Keep me');
+    const bad = {
+      app: 'brainstorming-tool',
+      version: 1,
+      boards: [{ id: 'evil', title: 'x', createdAt: 1, updatedAt: 1 }],
+      ideas: [
+        {
+          id: 'e',
+          boardId: 'evil',
+          parentId: null,
+          text: 'x'.repeat(100_000),
+          x: 0,
+          y: 0,
+          color: 0,
+          createdAt: 1,
+        },
+      ],
+    };
+    await page.getByTestId('import-input').setInputFiles({
+      name: 'evil.json',
+      mimeType: 'application/json',
+      buffer: Buffer.from(JSON.stringify(bad)),
+    });
+    await expect(page.getByRole('status')).toContainText('not a valid backup');
+    await page.goto('/#/');
+    await expect(
+      page.getByTestId('sidebar').getByRole('button', { name: 'Keep me' }),
+    ).toBeVisible();
+    await expect(
+      page.getByTestId('sidebar').getByRole('button', { name: 'x', exact: true }),
+    ).toHaveCount(0);
+  });
+
+  test('the production build runs under its Content-Security-Policy without violations', async ({
+    page,
+  }) => {
+    const violations: string[] = [];
+    page.on(
+      'console',
+      (m) => /content security policy|refused to/i.test(m.text()) && violations.push(m.text()),
+    );
+    await page.addInitScript(() =>
+      document.addEventListener('securitypolicyviolation', (e) =>
+        console.error(`CSP violation: ${e.violatedDirective} ${e.blockedURI}`),
+      ),
+    );
+    const csp = await page
+      .goto('/')
+      .then(() =>
+        page.locator('meta[http-equiv="Content-Security-Policy"]').getAttribute('content'),
+      );
+    expect(csp).toContain("script-src 'self'");
+    expect(csp).toContain("object-src 'none'");
+    expect(csp).not.toContain("'unsafe-eval'");
+
+    await createBoard(page, 'CSP');
+    await addChild(page, 'CSP', 'Child');
+    await page.getByTestId('export-menu').click();
+    const png = page.waitForEvent('download');
+    await page.getByRole('menuitem', { name: /PNG/ }).click();
+    expect((await png).suggestedFilename()).toBe('CSP.png');
+    await page.getByTestId('theme-switch').click();
+    await page.getByTestId('language-switch').selectOption('fa');
+    expect(violations).toEqual([]);
+  });
+});
+
+test('links ideas from the details sheet and shows the link on the map', async ({ page }) => {
+  await page.goto('/');
+  await page.getByTestId('template-select').first().selectOption({ label: 'Pros and cons' });
+  await page.getByRole('textbox', { name: /idea/i }).first().fill('Choice');
+  await page.getByRole('button', { name: 'Create board' }).first().click();
+  await expect(page.getByTestId('idea-node')).toHaveCount(3);
+
+  await page.getByTestId('sidebar').getByRole('button', { name: 'Pros', exact: true }).click();
+  await page.getByLabel('Link to another idea…').selectOption({ label: 'Cons' });
+  const panel = page.getByTestId('details-panel');
+  await expect(panel.getByRole('listitem').filter({ hasText: 'Cons' })).toHaveCount(1);
+  await expect(page.locator('.react-flow__edge path[style*="stroke-dasharray"]')).toHaveCount(1);
 });

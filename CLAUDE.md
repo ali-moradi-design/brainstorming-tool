@@ -10,6 +10,13 @@ Rules:
 - After modifying code, run `graphify update .` to keep the graph current (AST-only, no API cost).
 - A committed graphify-out/graph.json is rewritten whole on every build, so a large diff to it in a pull request is expected. Do not flag it as churn or suggest skipping the graph rebuild or its hooks.
 
+## Session workflow
+
+- When the user asks to be taught the code, read `notes/session-log.md` first, teach ONE stage per session step by step in Persian, and update "Teaching progress" at the end.
+- Add new important decisions and gotchas to `notes/session-log.md` at the end of each session.
+- Details model "C" (bottom sheet) is the chosen design; other mockups live in `docs/ui-options`.
+- Before deploying, read `SECURITY.md` and `deploy/nginx/`.
+
 ## Project
 
 Local-first brainstorming (mind map) app. All data lives in IndexedDB (Dexie); `localStorage` only

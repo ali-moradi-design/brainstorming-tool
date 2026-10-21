@@ -6,6 +6,7 @@ A local-first mind-map brainstorming app. Your boards never leave your browser:
 they are stored in IndexedDB, with JSON export/import for backups.
 
 ![Dark theme](docs/screenshots/app-dark.png)
+![List view](docs/screenshots/app-light-list.png)
 ![Light theme, Persian (RTL)](docs/screenshots/app-light-fa.png)
 
 ## Features
@@ -39,3 +40,7 @@ pnpm format       # Prettier
 pnpm test         # Jest unit/integration tests
 pnpm e2e          # Playwright end-to-end tests
 ```
+
+## Deploying and security
+
+See [SECURITY.md](SECURITY.md) and `deploy/nginx/`. CI (`.github/workflows`) runs audit, lint, typecheck, tests and e2e, then deploys the static build.

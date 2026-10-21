@@ -117,6 +117,7 @@ function Editor({ data }: { data: IdeaNodeData }) {
     <textarea
       ref={ref}
       rows={2}
+      maxLength={500}
       value={value}
       onChange={(e) => setValue(e.target.value)}
       onBlur={() => finish(() => data.onCommit(value.trim() || data.text))}

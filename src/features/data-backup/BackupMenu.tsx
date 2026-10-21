@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button, DownloadIcon, UploadIcon } from '@/shared/ui';
-import { exportBackup, importBackup } from './backup';
+import { exportBackup, importBackup, MAX_BACKUP_BYTES } from './backup';
 
 export function BackupMenu() {
   const { t } = useTranslation();
@@ -22,6 +22,7 @@ export function BackupMenu() {
   const upload = async (file: File | undefined) => {
     if (!file) return;
     try {
+      if (file.size > MAX_BACKUP_BYTES) throw new Error('backup too large');
       const count = await importBackup(JSON.parse(await file.text()));
       setMessage(t('backup.importDone', { count }));
     } catch {

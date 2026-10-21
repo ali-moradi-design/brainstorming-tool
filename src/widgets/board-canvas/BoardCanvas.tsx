@@ -44,7 +44,7 @@ const edgeTypes = { idea: IdeaEdge } satisfies EdgeTypes;
 function Canvas({ boardId }: { boardId: string }) {
   const { t } = useTranslation();
   const theme = useThemeStore((s) => s.theme);
-  const { fitView, setCenter, getNodes } = useReactFlow();
+  const { fitView, setCenter, getNodes, getViewport } = useReactFlow();
   const ideas = useIdeas(boardId);
   const links = useLinks(boardId);
   const noteCounts = useNoteCounts(boardId);
@@ -85,6 +85,25 @@ function Canvas({ boardId }: { boardId: string }) {
     handledFocus.current = focus.n;
     void setCenter(target.x, target.y, { zoom: 1, duration: 400 });
   }, [focus, ideas, setCenter, pending]);
+
+  // The details sheet shrinks the canvas, so bring a newly selected idea into view if it is not.
+  useEffect(() => {
+    if (!selectedId) return;
+    const timer = setTimeout(() => {
+      const idea = ideas?.find((i) => i.id === selectedId);
+      const box = wrapperRef.current;
+      if (!idea || !box) return;
+      const { x, y, zoom } = getViewport();
+      const sx = idea.x * zoom + x;
+      const sy = idea.y * zoom + y;
+      const visible =
+        sx > 60 && sx < box.clientWidth - 60 && sy > 110 && sy < box.clientHeight - 120;
+      if (!visible) void setCenter(idea.x, idea.y, { zoom, duration: 250 });
+    }, 80);
+    return () => clearTimeout(timer);
+    // Only when the selection changes, not when ideas move.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedId]);
 
   // Leaving the editor unmounts the focused textarea; give focus back so shortcuts keep working.
   const stopEditing = () => {

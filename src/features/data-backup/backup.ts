@@ -1,48 +1,58 @@
 import { z } from 'zod';
 import { db } from '@/shared/api';
 
+/** Upper bounds so a hostile or corrupt file cannot exhaust memory or fill the database. */
+export const MAX_BACKUP_BYTES = 10 * 1024 * 1024;
+const id = z.string().min(1).max(64);
+const time = z.number().int().nonnegative();
+const coord = z.number().min(-1e6).max(1e6);
+
 const backupSchema = z.object({
   app: z.literal('brainstorming-tool'),
   version: z.literal(1),
-  boards: z.array(
-    z.object({ id: z.string(), title: z.string(), createdAt: z.number(), updatedAt: z.number() }),
-  ),
-  ideas: z.array(
-    z.object({
-      id: z.string(),
-      boardId: z.string(),
-      parentId: z.string().nullable(),
-      text: z.string(),
-      description: z.string().default(''),
-      collapsed: z.boolean().default(false),
-      tags: z.array(z.string()).default([]),
-      x: z.number(),
-      y: z.number(),
-      color: z.number().int().min(0).max(4),
-      createdAt: z.number(),
-    }),
-  ),
+  boards: z
+    .array(z.object({ id, title: z.string().max(200), createdAt: time, updatedAt: time }))
+    .max(2_000),
+  ideas: z
+    .array(
+      z.object({
+        id,
+        boardId: id,
+        parentId: id.nullable(),
+        text: z.string().max(500),
+        description: z.string().max(20_000).default(''),
+        collapsed: z.boolean().default(false),
+        tags: z.array(z.string().max(48)).max(30).default([]),
+        x: coord,
+        y: coord,
+        color: z.number().int().min(0).max(4),
+        createdAt: time,
+      }),
+    )
+    .max(50_000),
   notes: z
     .array(
       z.object({
-        id: z.string(),
-        boardId: z.string(),
-        ideaId: z.string(),
-        text: z.string(),
-        createdAt: z.number(),
+        id,
+        boardId: id,
+        ideaId: id,
+        text: z.string().max(20_000),
+        createdAt: time,
       }),
     )
+    .max(50_000)
     .default([]),
   links: z
     .array(
       z.object({
-        id: z.string(),
-        boardId: z.string(),
-        fromId: z.string(),
-        toId: z.string(),
-        createdAt: z.number(),
+        id,
+        boardId: id,
+        fromId: id,
+        toId: id,
+        createdAt: time,
       }),
     )
+    .max(50_000)
     .default([]),
 });
 
