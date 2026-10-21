@@ -1,0 +1,34 @@
+{
+  "app": {
+    "title": "Brainstorm",
+    "tagline": "Pour your ideas onto a mind map. Everything stays on your device."
+  },
+  "nav": { "back": "All boards" },
+  "boards": {
+    "title": "Your boards",
+    "empty": "No boards yet. Name your first one above.",
+    "createPlaceholder": "Name your next big idea…",
+    "create": "Create board",
+    "delete": "Delete board",
+    "deleteConfirm": "Delete this board and all its ideas?",
+    "updated": "Updated {{date}}"
+  },
+  "board": { "titleLabel": "Board title", "notFound": "This board does not exist." },
+  "idea": {
+    "new": "New idea",
+    "addChild": "Add child (Tab)",
+    "addSibling": "Add sibling (Enter)",
+    "delete": "Delete (Del)",
+    "tidy": "Tidy layout",
+    "color": "Color {{n}}",
+    "hint": "Double-click or F2 to edit · Tab adds a child · Enter adds a sibling"
+  },
+  "theme": { "toLight": "Switch to light theme", "toDark": "Switch to dark theme" },
+  "language": { "label": "Language" },
+  "backup": {
+    "export": "Export",
+    "import": "Import",
+    "importDone": "Imported {{count}} ideas",
+    "importError": "This is not a valid backup file"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "0": "package.json",
+  "1": "idea/index.ts",
+  "2": "BoardsPage.tsx",
+  "3": "devDependencies",
+  "4": "react-i18next",
+  "5": "api/index.ts",
+  "6": "icons.tsx",
+  "7": "compilerOptions",
+  "8": "store.ts",
+  "9": "dependencies",
+  "10": "compilerOptions",
+  "11": "scripts",
+  "12": "jest.polyfills.ts",
+  "13": ".prettierrc.json"
+}

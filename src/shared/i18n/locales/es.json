@@ -1,0 +1,34 @@
+{
+  "app": {
+    "title": "Lluvia de ideas",
+    "tagline": "Vuelca tus ideas en un mapa mental. Todo se queda en tu dispositivo."
+  },
+  "nav": { "back": "Todos los tableros" },
+  "boards": {
+    "title": "Tus tableros",
+    "empty": "Aún no hay tableros. Pon nombre al primero arriba.",
+    "createPlaceholder": "Pon nombre a tu próxima gran idea…",
+    "create": "Crear tablero",
+    "delete": "Eliminar tablero",
+    "deleteConfirm": "¿Eliminar este tablero y todas sus ideas?",
+    "updated": "Actualizado el {{date}}"
+  },
+  "board": { "titleLabel": "Título del tablero", "notFound": "Este tablero no existe." },
+  "idea": {
+    "new": "Nueva idea",
+    "addChild": "Añadir hija (Tab)",
+    "addSibling": "Añadir hermana (Enter)",
+    "delete": "Eliminar (Supr)",
+    "tidy": "Ordenar disposición",
+    "color": "Color {{n}}",
+    "hint": "Doble clic o F2 para editar · Tab añade una hija · Enter añade una hermana"
+  },
+  "theme": { "toLight": "Cambiar al tema claro", "toDark": "Cambiar al tema oscuro" },
+  "language": { "label": "Idioma" },
+  "backup": {
+    "export": "Exportar",
+    "import": "Importar",
+    "importDone": "Se importaron {{count}} ideas",
+    "importError": "Este archivo de copia de seguridad no es válido"
+  }
+}
