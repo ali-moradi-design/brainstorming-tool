@@ -27,7 +27,7 @@ they are stored in IndexedDB, with JSON export/import for backups.
 Vite · React · TypeScript · Tailwind CSS v4 · @xyflow/react · Dexie (IndexedDB) · Zustand · i18next · Zod
 
 Architecture: [Feature-Sliced Design](https://feature-sliced.design) (`app → pages → widgets → features → entities → shared`).
-Palette: `#124e78 #f0f0c9 #f2bb05 #d74e09`.
+Palette: `#0a1128 #001f54 #034078 #1282a2 #fefcfb`.
 
 ## Scripts
 

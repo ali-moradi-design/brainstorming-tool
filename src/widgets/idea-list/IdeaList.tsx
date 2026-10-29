@@ -1,14 +1,16 @@
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { buildOutline, matchesTags, useIdeas, useSelection, useViewState } from '@/entities/idea';
 import { useNoteCounts } from '@/entities/note';
 
 /** Flat, readable alternative to the map: every idea as a row, honoring the tag filter. */
-export function IdeaList({ boardId }: { boardId: string }) {
+export const IdeaList = memo(function IdeaList({ boardId }: { boardId: string }) {
   const { t } = useTranslation();
   const ideas = useIdeas(boardId);
   const noteCounts = useNoteCounts(boardId);
   const tagFilter = useViewState((s) => s.tagFilter);
-  const { selectedId, select } = useSelection();
+  const selectedId = useSelection((s) => s.selectedId);
+  const select = useSelection((s) => s.select);
   const rows = buildOutline(ideas ?? []).filter(({ idea }) => matchesTags(idea.tags, tagFilter));
 
   return (
@@ -60,4 +62,4 @@ export function IdeaList({ boardId }: { boardId: string }) {
       </ul>
     </div>
   );
-}
+});

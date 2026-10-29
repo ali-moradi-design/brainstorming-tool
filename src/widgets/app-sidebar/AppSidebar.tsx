@@ -86,7 +86,8 @@ function Projects({ boardId }: { boardId: string | null }) {
 function Outline({ boardId }: { boardId: string }) {
   const { t } = useTranslation();
   const ideas = useIdeas(boardId);
-  const { selectedId, focusIdea } = useSelection();
+  const selectedId = useSelection((s) => s.selectedId);
+  const focusIdea = useSelection((s) => s.focusIdea);
   const rows = buildOutline(ideas ?? []);
 
   return (

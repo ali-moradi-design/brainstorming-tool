@@ -17,7 +17,7 @@ IndexedDB; nothing leaves the browser.
   templates (SWOT, Six Hats, Pros/Cons, 5W1H, Project plan)
 - Export PNG/SVG/Markdown, JSON backup/restore, offline PWA
 - Languages: English, Spanish, Persian (RTL). Light/dark themes from the palette
-  `#124e78 #f0f0c9 #f2bb05 #d74e09`
+  `#0a1128 #001f54 #034078 #1282a2 #fefcfb` (navy/blue; replaced the old blue/cream/amber/orange)
 - Tooling: pnpm, ESLint (+FSD import rules), Prettier, Jest, Playwright, GitHub Actions CI + deploy,
   graphify knowledge graph, Nginx config and security review (SECURITY.md)
 
@@ -59,7 +59,7 @@ ESLint enforces it (`no-restricted-imports`). Cross-slice needs go through a hig
 ## Decisions made with the user
 
 - Mind map (radial) instead of sticky notes; details model "C" = bottom sheet under the canvas
-- Name: Ideabloom (same Latin brand in all languages). Palette: blue/cream/amber/orange
+- Name: Ideabloom (same Latin brand in all languages). Palette: navy/blue/cerulean/white (logo, favicon, PNG icons follow it)
 - Sync between devices deliberately NOT built (needs a server); everything is local-first
 - Hosting follows the roadmap repo: static build rsynced to `/srv/static/ideabloom`, Nginx on the
   host, certbot, subdomain `ideabloom.ali-moradi-develop.com`, SSH port 9011
@@ -77,6 +77,18 @@ ESLint enforces it (`no-restricted-imports`). Cross-slice needs go through a hig
 - `pgrep -f` / `pkill -f` match their own shell; use the `[v]ite` bracket trick
 - Playwright: scope role queries (`getByRole('option')` also matched the template `<select>`), wait for saves before reload,
   and size the viewport for the details sheet
+- Re-render audit (React DevTools hook counting rendered fibers): React Flow re-renders every node when
+  any prop of `<ReactFlow>` changes identity (inline `onNodeClick` etc.) or when a node object is new.
+  Fix: stable handlers (`useEvent`), constant option objects, `useStableItems` keeps unchanged node/edge
+  objects, node data has no functions (actions come from `IdeaNodeActionsContext`), `memo` on IdeaNode,
+  toolbar, BoardBar, IdeaList, BoardCanvas and the details panel (compared with `isSameIdea`)
+- Controlled React Flow nodes must carry `measured` (from `dimensions` changes). Without it every new
+  node object lost its size and, with `nodeOrigin` 0.5, was drawn half its size off: dragging jumped
+- Opening the details sheet shrinks the canvas and moves its bottom toolbar under the pointer, so a
+  double-click hit a color button. A click on the map now opens the sheet after 300 ms (`detailsId`)
+- Two Tailwind utilities for one property do not override by class order: `Button` drops its default
+  `h-9`/`px-3` when the caller passes its own (icon buttons were squeezed to 10px)
+- The tag filter is cleared when the project changes (it used to dim every idea of the next project)
 - TypeScript 7 is not supported by typescript-eslint yet, so the project uses TypeScript 5.9
 - The sandbox browser build differs from Playwright's expected one: set `CHROMIUM_PATH`
 
