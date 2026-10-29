@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { memo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { allTags, useIdeas, useViewState } from '@/entities/idea';
 import { ExportMenu } from '@/features/export-board';
@@ -8,11 +8,13 @@ import { Button, ListIcon, MapIcon, RedoIcon, UndoIcon } from '@/shared/ui';
 type Props = { boardId: string; title: string };
 
 /** Board-level tools: view switch, undo/redo, search, export and the tag filter. */
-export function BoardBar({ boardId, title }: Props) {
+export const BoardBar = memo(function BoardBar({ boardId, title }: Props) {
   const { t } = useTranslation();
   const ideas = useIdeas(boardId);
-  const { view, setView, tagFilter, toggleTag, clearTags } = useViewState();
-  const { undo, redo } = useHistory();
+  const view = useViewState((s) => s.view);
+  const tagFilter = useViewState((s) => s.tagFilter);
+  const { setView, toggleTag, clearTags } = useViewState.getState();
+  const { undo, redo } = useHistory.getState();
   const canUndo = useHistory((s) => (s.past[boardId]?.length ?? 0) > 0);
   const canRedo = useHistory((s) => (s.future[boardId]?.length ?? 0) > 0);
   const tags = allTags(ideas ?? []);
@@ -111,4 +113,4 @@ export function BoardBar({ boardId, title }: Props) {
       )}
     </div>
   );
-}
+});

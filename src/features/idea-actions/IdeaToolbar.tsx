@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { IDEA_COLORS } from '@/entities/idea';
 import { BranchIcon, Button, LayoutIcon, LinkIcon, PlusIcon, TrashIcon } from '@/shared/ui';
@@ -7,15 +8,16 @@ type Props = {
   selectedColor: number;
   canDelete: boolean;
   linkMode: boolean;
-  onAddChild: () => void;
-  onAddSibling: () => void;
-  onColor: (color: number) => void;
-  onToggleLink: () => void;
-  onDelete: () => void;
-  onTidy: () => void;
+  onAddChild: () => unknown;
+  onAddSibling: () => unknown;
+  onColor: (color: number) => unknown;
+  onToggleLink: () => unknown;
+  onDelete: () => unknown;
+  onTidy: () => unknown;
 };
 
-export function IdeaToolbar(p: Props) {
+/** Memoized: pass stable handlers so dragging on the canvas does not re-render the toolbar. */
+export const IdeaToolbar = memo(function IdeaToolbar(p: Props) {
   const { t } = useTranslation();
   const hasSelection = p.selectedId !== null;
 
@@ -80,4 +82,4 @@ export function IdeaToolbar(p: Props) {
       </Button>
     </div>
   );
-}
+});

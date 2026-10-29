@@ -7,5 +7,8 @@ export type { Point } from './layout';
 export { IdeaNode } from './IdeaNode';
 export { IdeaEdge } from './IdeaEdge';
 export type { IdeaFlowNode, IdeaNodeData } from './IdeaNode';
+export { IdeaNodeActionsContext } from './nodeActions';
+export type { IdeaNodeActions } from './nodeActions';
+export { isSameIdea } from './compare';
 export const IDEA_COLORS = [0, 1, 2, 3, 4] as const;
 export { registerCanvasNodes, getCanvasNodes } from './canvasRegistry';

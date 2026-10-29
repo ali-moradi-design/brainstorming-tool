@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { renameBoard, useBoard } from '@/entities/board';
 import { useIdeas, useSelection, useViewState } from '@/entities/idea';
@@ -7,20 +8,25 @@ import { BoardBar } from '@/widgets/board-bar';
 import { BoardCanvas } from '@/widgets/board-canvas';
 import { IdeaList } from '@/widgets/idea-list';
 
+const closeDetails = () => useSelection.getState().select(null);
+
 export function BoardPage({ boardId }: { boardId: string }) {
   const { t } = useTranslation();
   const board = useBoard(boardId);
   const ideas = useIdeas(boardId);
   const sidebarOpen = useSidebar((s) => s.open);
   const view = useViewState((s) => s.view);
-  const { selectedId, select } = useSelection();
+  const detailsId = useSelection((s) => s.detailsId);
+
+  // A tag filter belongs to one project; carried over, it would dim every idea of the next one.
+  useEffect(() => useViewState.getState().clearTags(), [boardId]);
 
   if (board === undefined) return null;
   if (board === null) {
     return <p className="p-8 pt-20 text-center text-muted">{t('board.notFound')}</p>;
   }
 
-  const selected = ideas?.find((i) => i.id === selectedId);
+  const selected = ideas?.find((i) => i.id === detailsId);
   const inset = sidebarOpen ? 'start-4' : 'start-16';
 
   return (
@@ -46,9 +52,7 @@ export function BoardPage({ boardId }: { boardId: string }) {
           <BoardBar boardId={board.id} title={board.title} />
         </div>
       </div>
-      {selected && (
-        <IdeaDetailsPanel key={selected.id} idea={selected} onClose={() => select(null)} />
-      )}
+      {selected && <IdeaDetailsPanel key={selected.id} idea={selected} onClose={closeDetails} />}
     </div>
   );
 }

@@ -362,3 +362,89 @@ test('links ideas from the details sheet and shows the link on the map', async (
   await expect(panel.getByRole('listitem').filter({ hasText: 'Cons' })).toHaveCount(1);
   await expect(page.locator('.react-flow__edge path[style*="stroke-dasharray"]')).toHaveCount(1);
 });
+
+/** Waits until the canvas stops panning (selecting an idea may bring it into view). */
+const settled = async (page: Page) => {
+  const transform = () => page.locator('.react-flow__viewport').getAttribute('style');
+  let last = await transform();
+  await expect
+    .poll(async () => {
+      const now = await transform();
+      const same = now === last;
+      last = now;
+      return same;
+    })
+    .toBe(true);
+};
+
+test('drags an idea, undoes and redoes the move, and keeps it after reload', async ({ page }) => {
+  await createBoard(page, 'Drag');
+  await addChild(page, 'Drag', 'Mover');
+  await settled(page);
+  const mover = page.getByTestId('idea-node').filter({ hasText: 'Mover' });
+  const start = (await mover.boundingBox())!;
+  const cx = start.x + start.width / 2;
+  const cy = start.y + start.height / 2;
+  await page.mouse.move(cx, cy);
+  await page.mouse.down();
+  await page.mouse.move(cx + 5, cy); // passes the drag threshold
+  for (let i = 1; i <= 8; i++) {
+    await page.mouse.move(cx + 5 + i * 15, cy + i * 5);
+    // The idea follows the pointer exactly, without jumping.
+    expect(Math.abs((await mover.boundingBox())!.x - start.x - i * 15)).toBeLessThan(2);
+  }
+  await page.mouse.up();
+  await expect
+    .poll(async () => Math.abs((await mover.boundingBox())!.x - start.x - 120))
+    .toBeLessThan(2);
+
+  // Positions relative to the root: the view is fitted again after a reload.
+  const root = page.getByTestId('idea-node').filter({ hasText: 'Drag' });
+  const offset = async () => (await mover.boundingBox())!.x - (await root.boundingBox())!.x;
+  const moved = await offset();
+
+  await page.getByTestId('undo').click();
+  await expect.poll(offset).toBeLessThan(moved - 50);
+  await page.getByTestId('redo').click();
+  await expect.poll(offset).toBeGreaterThan(moved - 2);
+
+  await page.reload();
+  await expect(mover).toBeVisible();
+  // The fitted view may zoom differently, so only check the idea stayed on the moved side.
+  expect(await offset()).toBeGreaterThan(moved * 0.5);
+});
+
+test('renames an idea with a double-click and Escape cancels an edit', async ({ page }) => {
+  await createBoard(page, 'Rename');
+  const node = page.getByTestId('idea-node');
+  await node.dblclick();
+  await expect(node.locator('textarea')).toBeFocused();
+  await page.keyboard.type('Renamed');
+  await page.keyboard.press('Enter');
+  await expect(node).toHaveText(/Renamed/);
+
+  await page.keyboard.press('F2');
+  await expect(node.locator('textarea')).toBeFocused();
+  await page.keyboard.type('Discarded');
+  await page.keyboard.press('Escape');
+  await expect(node.locator('textarea')).toHaveCount(0);
+  await expect(node).toHaveText(/Renamed/);
+});
+
+test('a tag filter does not follow you to another project', async ({ page }) => {
+  await createBoard(page, 'Tagged');
+  await page.getByTestId('idea-node').click();
+  const panel = page.getByTestId('details-panel');
+  await panel.getByLabel('Add a tag and press Enter').fill('later');
+  await page.keyboard.press('Enter');
+  await page.getByRole('button', { name: '#later' }).last().click();
+  await expect(page.getByRole('button', { name: '#later' }).last()).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  );
+
+  await page.getByRole('textbox', { name: /idea/i }).first().fill('Untagged');
+  await page.getByRole('button', { name: 'Create board' }).first().click();
+  await expect(page.getByRole('textbox', { name: 'Board title' })).toHaveValue('Untagged');
+  await expect(page.getByTestId('idea-node')).not.toHaveClass(/opacity-25/);
+});

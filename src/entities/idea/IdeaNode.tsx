@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState, type KeyboardEvent } from 'react';
+import { memo, useContext, useEffect, useRef, useState, type KeyboardEvent } from 'react';
 import { Handle, Position, type Node, type NodeProps } from '@xyflow/react';
 import { useTranslation } from 'react-i18next';
+import { IdeaNodeActionsContext } from './nodeActions';
 
 export type IdeaNodeData = {
   text: string;
@@ -14,22 +15,20 @@ export type IdeaNodeData = {
   collapsed: boolean;
   /** Number of ideas hidden behind a collapsed idea. */
   hiddenCount: number;
-  onToggleCollapse: () => void;
   editing: boolean;
-  onCommit: (text: string) => void;
-  onEditStart: () => void;
-  onEditCancel: () => void;
 };
 
 export type IdeaFlowNode = Node<IdeaNodeData, 'idea'>;
 
-export function IdeaNode({ data, selected }: NodeProps<IdeaFlowNode>) {
+// Data holds only plain values and actions come from context, so memo skips unchanged nodes.
+export const IdeaNode = memo(function IdeaNode({ id, data, selected }: NodeProps<IdeaFlowNode>) {
   const { t } = useTranslation();
+  const actions = useContext(IdeaNodeActionsContext);
   const c = data.color;
   return (
     <div
       dir="auto"
-      onDoubleClick={data.onEditStart}
+      onDoubleClick={() => actions.startEdit(id)}
       data-testid="idea-node"
       data-selected={selected}
       style={{
@@ -44,7 +43,11 @@ export function IdeaNode({ data, selected }: NodeProps<IdeaFlowNode>) {
     >
       {/* Edges are floating (see IdeaEdge); these handles only anchor React Flow. */}
       <Handle type="target" position={Position.Top} className="!pointer-events-none !opacity-0" />
-      {data.editing ? <Editor data={data} /> : <span className="break-words">{data.text}</span>}
+      {data.editing ? (
+        <Editor id={id} text={data.text} />
+      ) : (
+        <span className="break-words">{data.text}</span>
+      )}
       <Handle
         type="source"
         position={Position.Bottom}
@@ -59,7 +62,7 @@ export function IdeaNode({ data, selected }: NodeProps<IdeaFlowNode>) {
           data-testid="collapse-toggle"
           onClick={(e) => {
             e.stopPropagation();
-            data.onToggleCollapse();
+            actions.toggleCollapse(id, data.collapsed);
           }}
           onDoubleClick={(e) => e.stopPropagation()}
         >
@@ -74,10 +77,11 @@ export function IdeaNode({ data, selected }: NodeProps<IdeaFlowNode>) {
       )}
     </div>
   );
-}
+});
 
-function Editor({ data }: { data: IdeaNodeData }) {
-  const [value, setValue] = useState(data.text);
+function Editor({ id, text }: { id: string; text: string }) {
+  const { commit, cancelEdit } = useContext(IdeaNodeActionsContext);
+  const [value, setValue] = useState(text);
   const ref = useRef<HTMLTextAreaElement>(null);
   // Enter/Escape unmount the textarea, which also fires blur; only the first outcome may count.
   const finished = useRef(false);
@@ -107,9 +111,9 @@ function Editor({ data }: { data: IdeaNodeData }) {
     e.stopPropagation();
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
-      finish(() => data.onCommit(value.trim() || data.text));
+      finish(() => commit(id, value.trim() || text, text));
     } else if (e.key === 'Escape') {
-      finish(data.onEditCancel);
+      finish(cancelEdit);
     }
   };
 
@@ -120,7 +124,7 @@ function Editor({ data }: { data: IdeaNodeData }) {
       maxLength={500}
       value={value}
       onChange={(e) => setValue(e.target.value)}
-      onBlur={() => finish(() => data.onCommit(value.trim() || data.text))}
+      onBlur={() => finish(() => commit(id, value.trim() || text, text))}
       onKeyDown={onKeyDown}
       className="nodrag nowheel w-full resize-none bg-transparent text-center outline-none"
     />
