@@ -20,13 +20,15 @@ what is left is XSS, hostile imported files, supply chain and server configurati
 
 ## Server hardening
 
-`deploy/nginx/` contains the Nginx site and a shared security-headers snippet:
-HTTPS redirect, HSTS, CSP, `nosniff`, `X-Frame-Options`, `Referrer-Policy: no-referrer`,
-`Permissions-Policy`, COOP/CORP, GET/HEAD only, no dotfiles or source maps, no version banner,
-immutable caching for hashed assets and `no-cache` for `index.html`, `sw.js`, `manifest`.
+The app runs as a container: `dist` served by an unprivileged Nginx (`Dockerfile`, uid 101,
+read-only filesystem, 64 MB). `nginx/` holds its config and a shared security-headers snippet:
+HSTS, CSP, `nosniff`, `X-Frame-Options`, `Referrer-Policy: no-referrer`, `Permissions-Policy`,
+COOP/CORP, GET/HEAD only, no dotfiles or source maps, no version banner, immutable caching for
+hashed assets and `no-cache` for `index.html`, `sw.js`, `manifest`. The host Nginx in front
+(`deploy/nginx.conf`) terminates HTTPS, compresses and also allows only GET/HEAD.
 
 Remember (project rules): `nginx -t` before every reload, certbot for the certificate, ufw only
-22/9011, 80 and 443, deploy via a restricted user, secrets only in GitHub secrets.
+22/9011, 80 and 443, deploy only through deploy-kit's forced `deploy-app` command, secrets only in GitHub secrets.
 
 ## Known limits
 
