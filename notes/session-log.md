@@ -61,8 +61,9 @@ ESLint enforces it (`no-restricted-imports`). Cross-slice needs go through a hig
 - Mind map (radial) instead of sticky notes; details model "C" = bottom sheet under the canvas
 - Name: Ideabloom (same Latin brand in all languages). Palette: blue/cream/amber/orange
 - Sync between devices deliberately NOT built (needs a server); everything is local-first
-- Hosting follows the roadmap repo: static build rsynced to `/srv/static/ideabloom`, Nginx on the
-  host, certbot, subdomain `ideabloom.ali-moradi-develop.com`, SSH port 9011
+- Hosting (changed 2026-10-29): `dist` in an `nginx-unprivileged` container (`Dockerfile`, `nginx/`),
+  deployed by deploy-kit after CI on `main`; subdomain `brainstorming-tool.ali-moradi-develop.com`,
+  port `127.0.0.1:3111`; host Nginx proxies and terminates HTTPS (`deploy/nginx.conf`)
 - Branches: work on `claude/compassionate-edison-fo8hde`, then merge into `main`
 
 ## Concepts and gotchas learned (good teaching material)

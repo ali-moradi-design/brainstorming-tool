@@ -15,7 +15,8 @@ Rules:
 - When the user asks to be taught the code, read `notes/session-log.md` first, teach ONE stage per session step by step in Persian, and update "Teaching progress" at the end.
 - Add new important decisions and gotchas to `notes/session-log.md` at the end of each session.
 - Details model "C" (bottom sheet) is the chosen design; other mockups live in `docs/ui-options`.
-- Before deploying, read `SECURITY.md` and `deploy/nginx/`.
+- Before changing the deploy, read `SECURITY.md`, `nginx/` (container) and `deploy/` (server).
+  Every merge to `main` deploys: `.github/workflows/docker.yml` → deploy-kit.
 
 ## Project
 
