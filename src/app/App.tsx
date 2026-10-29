@@ -10,6 +10,7 @@ const BoardPage = lazy(() => import('@/pages/board').then((m) => ({ default: m.B
 
 export function App() {
   const boardId = matchBoardId(useHashPath());
+  // hello
 
   return (
     <div className="relative flex h-dvh overflow-hidden">
