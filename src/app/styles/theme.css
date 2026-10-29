@@ -1,59 +1,58 @@
 /*
- * Palette: #0a1128 #001f54 #034078 #1282a2 #fefcfb (coolors.co)
+ * Palette: #132a13 #31572c #4f772d #90a955 #ecf39e (coolors.co)
  * The other values are tints and shades of these five.
  * Components use only the semantic tokens below, never raw hex values.
  */
 :root,
 [data-theme='light'] {
-  --bg: #eef3f8;
-  --surface: #fefcfb;
-  --surface-2: #dbe6f0;
-  --border: #b9cde0;
-  --text: #0a1128;
-  --muted: #3d5a7a;
-  --accent: #034078;
-  --accent-strong: #001f54;
-  --accent-fg: #fefcfb;
+  --bg: #f6f9dc;
+  --surface: #fbfde8;
+  --surface-2: #e4ecbc;
+  --border: #c9d79a;
+  --text: #132a13;
+  --muted: #4a6141;
+  --accent: #31572c;
+  --accent-strong: #132a13;
+  --accent-fg: #fbfde8;
 
-  --idea-0-bg: #fefcfb;
-  --idea-0-fg: #0a1128;
-  --idea-0-border: #b9cde0;
-  --idea-1-bg: #034078;
-  --idea-1-fg: #fefcfb;
-  --idea-2-bg: #1282a2;
-  --idea-2-fg: #fefcfb;
-  --idea-3-bg: #001f54;
-  --idea-3-fg: #fefcfb;
-  --idea-4-bg: #bfe0ea;
-  --idea-4-fg: #0a1128;
-  --edge: #7fa0bd;
+  --idea-0-bg: #fbfde8;
+  --idea-0-fg: #132a13;
+  --idea-0-border: #c9d79a;
+  --idea-1-bg: #31572c;
+  --idea-1-fg: #ecf39e;
+  --idea-2-bg: #90a955;
+  --idea-2-fg: #132a13;
+  --idea-3-bg: #4f772d;
+  --idea-3-fg: #fbfde8;
+  --idea-4-bg: #132a13;
+  --idea-4-fg: #ecf39e;
+  --edge: #9fb37a;
   color-scheme: light;
 }
 
 [data-theme='dark'] {
-  --bg: #0a1128;
-  --surface: #0c1a40;
-  --surface-2: #001f54;
-  --border: #1c3a6e;
-  --text: #fefcfb;
-  --muted: #9db4cc;
-  --accent: #38a9c9;
-  --accent-strong: #5cc0dc;
-  --accent-fg: #0a1128;
+  --bg: #132a13;
+  --surface: #1b361a;
+  --surface-2: #31572c;
+  --border: #3e6636;
+  --text: #ecf39e;
+  --muted: #b8c99a;
+  --accent: #90a955;
+  --accent-strong: #a7bf6a;
+  --accent-fg: #132a13;
 
-  --idea-0-bg: #0c1a40;
-  --idea-0-fg: #fefcfb;
-  --idea-0-border: #1c3a6e;
-  --idea-1-bg: #034078;
-  --idea-1-fg: #fefcfb;
-  --idea-2-bg: #1282a2;
-  --idea-2-fg: #fefcfb;
-  --idea-3-bg: #001f54;
-  --idea-3-fg: #fefcfb;
-  --idea-3-border: #1c3a6e;
-  --idea-4-bg: #fefcfb;
-  --idea-4-fg: #0a1128;
-  --edge: #2f5f8f;
+  --idea-0-bg: #1b361a;
+  --idea-0-fg: #ecf39e;
+  --idea-0-border: #3e6636;
+  --idea-1-bg: #31572c;
+  --idea-1-fg: #ecf39e;
+  --idea-2-bg: #90a955;
+  --idea-2-fg: #132a13;
+  --idea-3-bg: #4f772d;
+  --idea-3-fg: #fbfde8;
+  --idea-4-bg: #ecf39e;
+  --idea-4-fg: #132a13;
+  --edge: #5d8a45;
   color-scheme: dark;
 }
 

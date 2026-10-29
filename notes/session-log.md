@@ -17,7 +17,7 @@ IndexedDB; nothing leaves the browser.
   templates (SWOT, Six Hats, Pros/Cons, 5W1H, Project plan)
 - Export PNG/SVG/Markdown, JSON backup/restore, offline PWA
 - Languages: English, Spanish, Persian (RTL). Light/dark themes from the palette
-  `#0a1128 #001f54 #034078 #1282a2 #fefcfb` (navy/blue; replaced the old blue/cream/amber/orange)
+  `#132a13 #31572c #4f772d #90a955 #ecf39e` (greens; earlier palettes were navy/blue and blue/cream/amber/orange)
 - Tooling: pnpm, ESLint (+FSD import rules), Prettier, Jest, Playwright, GitHub Actions CI + deploy,
   graphify knowledge graph, Nginx config and security review (SECURITY.md)
 
@@ -59,7 +59,7 @@ ESLint enforces it (`no-restricted-imports`). Cross-slice needs go through a hig
 ## Decisions made with the user
 
 - Mind map (radial) instead of sticky notes; details model "C" = bottom sheet under the canvas
-- Name: Ideabloom (same Latin brand in all languages). Palette: navy/blue/cerulean/white (logo, favicon, PNG icons follow it)
+- Name: Ideabloom (same Latin brand in all languages). Palette: forest greens to pale lime (logo, favicon, PNG icons follow it)
 - Sync between devices deliberately NOT built (needs a server); everything is local-first
 - Hosting follows the roadmap repo: static build rsynced to `/srv/static/ideabloom`, Nginx on the
   host, certbot, subdomain `ideabloom.ali-moradi-develop.com`, SSH port 9011

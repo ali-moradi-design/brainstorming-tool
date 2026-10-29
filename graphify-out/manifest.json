@@ -372,15 +372,15 @@
     "semantic_hash": ""
   },
   "index.html": {
-    "mtime": 1793257509.7674663,
-    "seen": 1793258024.1813657,
-    "ast_hash": "49a678ac9cffb4433a9155ebda72f5f7",
+    "mtime": 1793258266.3444963,
+    "seen": 1793258335.1863213,
+    "ast_hash": "aa21dfeba441915161343546c7c3b99f",
     "semantic_hash": ""
   },
   "public/favicon.svg": {
-    "mtime": 1793257509.7674663,
-    "seen": 1793258024.1814213,
-    "ast_hash": "ec8b4b67768742e6cf5227d29ac9bcfb",
+    "mtime": 1793258266.3440144,
+    "seen": 1793258335.186378,
+    "ast_hash": "b79120eaf3f2cc69dac0a01d22b5461d",
     "semantic_hash": ""
   },
   ".claude/settings.json": {
@@ -396,9 +396,9 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1793257509.7656057,
-    "seen": 1793258024.1813395,
-    "ast_hash": "3768732d97c6d510164b8ef68db77959",
+    "mtime": 1793258266.3446753,
+    "seen": 1793258335.1862955,
+    "ast_hash": "306c61e2b52f7761199268d7b73827c4",
     "semantic_hash": ""
   },
   "docs/ui-options/b-sidebar.html": {
@@ -708,9 +708,9 @@
     "semantic_hash": ""
   },
   "src/shared/ui/Logo.tsx": {
-    "mtime": 1793257509.768201,
-    "seen": 1793258024.1812923,
-    "ast_hash": "6d2a14c3570847ad6663d52d572df46b",
+    "mtime": 1793258266.3436713,
+    "seen": 1793258335.1862469,
+    "ast_hash": "5a0ed010b062dad1fa971e3d0d4fed64",
     "semantic_hash": ""
   },
   "src/widgets/board-bar/BoardBar.tsx": {
@@ -816,15 +816,15 @@
     "semantic_hash": ""
   },
   "public/icon-192.png": {
-    "mtime": 1793257509.7674663,
-    "seen": 1793258024.1814241,
-    "ast_hash": "8d45e50661d37e620fad7eaf4846eee1",
+    "mtime": 1793258276.1338193,
+    "seen": 1793258335.1863806,
+    "ast_hash": "c54d7cfc71bb82a7de637f2fdeebac39",
     "semantic_hash": ""
   },
   "public/icon-512.png": {
-    "mtime": 1793257509.7678254,
-    "seen": 1793258024.1814263,
-    "ast_hash": "38a8b5cdf00db02776953a72c1096a96",
+    "mtime": 1793258276.2218194,
+    "seen": 1793258335.1863828,
+    "ast_hash": "20f612ea858595ad601a5f7ea96c0c7d",
     "semantic_hash": ""
   },
   "public/theme-init.js": {
@@ -858,9 +858,9 @@
     "semantic_hash": ""
   },
   "notes/session-log.md": {
-    "mtime": 1793258021.61662,
-    "seen": 1793258024.1813684,
-    "ast_hash": "d95458dca8ba9b6574b96f0170afbee6",
+    "mtime": 1793258266.3449836,
+    "seen": 1793258335.1863241,
+    "ast_hash": "5d11e6594c6b6890ac75bad3d6eab7de",
     "semantic_hash": ""
   },
   "docs/screenshots/app-light-list.png": {
